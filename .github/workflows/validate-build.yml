@@ -8,6 +8,8 @@ on:
       - reopened
     branches:
       - main
+    paths-ignore:
+      - github/**
 
 jobs:
   validate-build:
@@ -23,10 +25,10 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-          npm install -w scrapper
+          cd scrapper && npm install && cd ..
 
       - name: Collect data
-        run: node scrapper/index.js
+        run: cd scrapper && node index.js && cd ..
 
       - name: Build project
         run: npm run build

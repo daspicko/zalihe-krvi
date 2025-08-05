@@ -6,6 +6,8 @@ on:
       - main
     paths-ignore:
       - github/**
+  schedule:
+    - cron: '0 3 * * *'  # Runs daily at 3 AM
 
 permissions:
   contents: read
@@ -30,10 +32,10 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-          npm install -w scrapper
+          cd scrapper && npm install && cd ..
 
       - name: Collect data
-        run: node scrapper/index.js
+        run: cd scrapper && node index.js && cd ..
 
       - name: Build project
         run: npm run build
