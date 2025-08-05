@@ -30,9 +30,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-          cd scrapper
-          npm install
-          cd ..
+          cd scrapper && npm install && cd ..
 
       - name: Collect data
         run: node scrapper/index.js
