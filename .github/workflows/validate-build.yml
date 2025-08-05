@@ -1,0 +1,32 @@
+name: Validate build
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+    branches:
+      - main
+
+jobs:
+  validate-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: |
+          npm install
+          npm install -w scrapper
+
+      - name: Collect data
+        run: node scrapper/index.js
+
+      - name: Build project
+        run: npm run build

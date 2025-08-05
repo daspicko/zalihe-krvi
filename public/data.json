@@ -1,0 +1,461 @@
+{
+  "updated": 1754389333083,
+  "locations": [
+    {
+      "name": "Opća Bolnica Varaždin",
+      "address": {
+        "street": "Ulica Ivana Meštrovića 1",
+        "city": "Varaždin",
+        "postalCode": "42000"
+      },
+      "website": "https://obv.hr/",
+      "dataUrl": "https://obv.hr/",
+      "bloodGroups": [
+        {
+          "type": "A+",
+          "highPercentage": 63,
+          "lowPercentage": 38,
+          "amountPercentage": 54
+        },
+        {
+          "type": "A-",
+          "highPercentage": 75,
+          "lowPercentage": 38,
+          "amountPercentage": 75
+        },
+        {
+          "type": "B+",
+          "highPercentage": 70,
+          "lowPercentage": 30,
+          "amountPercentage": 100
+        },
+        {
+          "type": "B-",
+          "highPercentage": 67,
+          "lowPercentage": 33,
+          "amountPercentage": 70
+        },
+        {
+          "type": "0+",
+          "highPercentage": 67,
+          "lowPercentage": 33,
+          "amountPercentage": 83
+        },
+        {
+          "type": "0-",
+          "highPercentage": 67,
+          "lowPercentage": 42,
+          "amountPercentage": 72
+        },
+        {
+          "type": "AB+",
+          "highPercentage": 67,
+          "lowPercentage": 33,
+          "amountPercentage": 100
+        },
+        {
+          "type": "AB-",
+          "highPercentage": 75,
+          "lowPercentage": 25,
+          "amountPercentage": 40
+        }
+      ]
+    },
+    {
+      "name": "Hrvatski zavod za transfuzijsku medicinu",
+      "address": {
+        "street": "Petrova 3",
+        "city": "Zagreb",
+        "postalCode": "10000"
+      },
+      "website": "https://hztm.hr",
+      "dataUrl": "https://hztm.hr/zalihe_krvi/",
+      "bloodGroups": [
+        {
+          "type": "A+",
+          "amount": 268,
+          "max": 535,
+          "high": 510,
+          "low": 80,
+          "highPercentage": 95,
+          "lowPercentage": 14,
+          "amountPercentage": 50
+        },
+        {
+          "type": "A-",
+          "amount": 50,
+          "max": 118,
+          "high": 110,
+          "low": 17,
+          "highPercentage": 93,
+          "lowPercentage": 14,
+          "amountPercentage": 42
+        },
+        {
+          "type": "B+",
+          "amount": 156,
+          "max": 284,
+          "high": 255,
+          "low": 42,
+          "highPercentage": 89,
+          "lowPercentage": 14,
+          "amountPercentage": 54
+        },
+        {
+          "type": "B-",
+          "amount": 26,
+          "max": 65,
+          "high": 54,
+          "low": 9,
+          "highPercentage": 83,
+          "lowPercentage": 13,
+          "amountPercentage": 40
+        },
+        {
+          "type": "0+",
+          "amount": 148,
+          "max": 525,
+          "high": 510,
+          "low": 78,
+          "highPercentage": 97,
+          "lowPercentage": 14,
+          "amountPercentage": 28
+        },
+        {
+          "type": "0-",
+          "amount": 33,
+          "max": 111,
+          "high": 110,
+          "low": 16,
+          "highPercentage": 99,
+          "lowPercentage": 14,
+          "amountPercentage": 29
+        },
+        {
+          "type": "AB+",
+          "amount": 116,
+          "max": 127,
+          "high": 125,
+          "low": 19,
+          "highPercentage": 98,
+          "lowPercentage": 14,
+          "amountPercentage": 91
+        },
+        {
+          "type": "AB-",
+          "amount": 8,
+          "max": 30,
+          "high": 25,
+          "low": 4,
+          "highPercentage": 83,
+          "lowPercentage": 13,
+          "amountPercentage": 26
+        }
+      ]
+    },
+    {
+      "name": "KBC Split",
+      "address": {
+        "street": "Spinčićeva 1",
+        "city": "Split",
+        "postalCode": "21000"
+      },
+      "website": "https://www.kbsplit.hr/",
+      "dataUrl": "https://www.kbsplit.hr/korisne-informacije/darivanje-krvi",
+      "bloodGroups": [
+        {
+          "type": "A+",
+          "highPercentage": 80,
+          "lowPercentage": 20,
+          "amountPercentage": 52
+        },
+        {
+          "type": "A-",
+          "highPercentage": 80,
+          "lowPercentage": 17,
+          "amountPercentage": 56
+        },
+        {
+          "type": "B+",
+          "highPercentage": 80,
+          "lowPercentage": 21,
+          "amountPercentage": 46
+        },
+        {
+          "type": "B-",
+          "highPercentage": 81,
+          "lowPercentage": 19,
+          "amountPercentage": 37
+        },
+        {
+          "type": "0+",
+          "highPercentage": 80,
+          "lowPercentage": 25,
+          "amountPercentage": 38
+        },
+        {
+          "type": "0-",
+          "highPercentage": 80,
+          "lowPercentage": 23,
+          "amountPercentage": 51
+        },
+        {
+          "type": "AB+",
+          "highPercentage": 80,
+          "lowPercentage": 23,
+          "amountPercentage": 58
+        },
+        {
+          "type": "AB-",
+          "highPercentage": 79,
+          "lowPercentage": 26,
+          "amountPercentage": 53
+        }
+      ]
+    },
+    {
+      "name": "KBC Rijeka",
+      "address": {
+        "street": "Krešimirova ulica 42",
+        "city": "Rijeka",
+        "postalCode": "51000"
+      },
+      "website": "https://kbc-rijeka.hr/",
+      "dataUrl": "https://kbc-rijeka.hr/zalihe-krvi/",
+      "bloodGroups": [
+        {
+          "type": "A+",
+          "highPercentage": 80,
+          "lowPercentage": 32,
+          "amountPercentage": 47
+        },
+        {
+          "type": "A-",
+          "highPercentage": 75,
+          "lowPercentage": 23,
+          "amountPercentage": 34
+        },
+        {
+          "type": "B+",
+          "highPercentage": 83,
+          "lowPercentage": 32,
+          "amountPercentage": 75
+        },
+        {
+          "type": "B-",
+          "highPercentage": 80,
+          "lowPercentage": 20,
+          "amountPercentage": 4
+        },
+        {
+          "type": "0+",
+          "highPercentage": 80,
+          "lowPercentage": 36,
+          "amountPercentage": 52
+        },
+        {
+          "type": "0-",
+          "highPercentage": 72,
+          "lowPercentage": 20,
+          "amountPercentage": 54
+        },
+        {
+          "type": "AB+",
+          "highPercentage": 75,
+          "lowPercentage": 20,
+          "amountPercentage": 88
+        },
+        {
+          "type": "AB-",
+          "highPercentage": 73,
+          "lowPercentage": 20,
+          "amountPercentage": 40
+        }
+      ]
+    },
+    {
+      "name": "KBC Osijek",
+      "address": {
+        "street": "Ulica Josipa Huttlera 4",
+        "city": "Osijek",
+        "postalCode": "31000"
+      },
+      "website": "https://www.kbco.hr",
+      "dataUrl": "https://www.kbco.hr/informacije/darivanje-krvi/",
+      "bloodGroups": [
+        {
+          "type": "A+",
+          "amount": 98,
+          "max": 457,
+          "high": 320,
+          "low": 114,
+          "highPercentage": 70,
+          "lowPercentage": 24,
+          "amountPercentage": 21
+        },
+        {
+          "type": "A-",
+          "amount": 47,
+          "max": 86,
+          "high": 60,
+          "low": 21,
+          "highPercentage": 69,
+          "lowPercentage": 24,
+          "amountPercentage": 54
+        },
+        {
+          "type": "B+",
+          "amount": 106,
+          "max": 229,
+          "high": 160,
+          "low": 57,
+          "highPercentage": 69,
+          "lowPercentage": 24,
+          "amountPercentage": 46
+        },
+        {
+          "type": "B-",
+          "amount": 35,
+          "max": 43,
+          "high": 30,
+          "low": 11,
+          "highPercentage": 69,
+          "lowPercentage": 25,
+          "amountPercentage": 81
+        },
+        {
+          "type": "0+",
+          "amount": 244,
+          "max": 500,
+          "high": 350,
+          "low": 125,
+          "highPercentage": 70,
+          "lowPercentage": 25,
+          "amountPercentage": 48
+        },
+        {
+          "type": "0-",
+          "amount": 35,
+          "max": 86,
+          "high": 60,
+          "low": 21,
+          "highPercentage": 69,
+          "lowPercentage": 24,
+          "amountPercentage": 40
+        },
+        {
+          "type": "AB+",
+          "amount": 71,
+          "max": 114,
+          "high": 80,
+          "low": 29,
+          "highPercentage": 70,
+          "lowPercentage": 25,
+          "amountPercentage": 62
+        },
+        {
+          "type": "AB-",
+          "amount": 24,
+          "max": 43,
+          "high": 30,
+          "low": 11,
+          "highPercentage": 69,
+          "lowPercentage": 25,
+          "amountPercentage": 55
+        }
+      ]
+    },
+    {
+      "name": "Opća Bolnica Zadar",
+      "address": {
+        "street": "Bože Peričića 5",
+        "city": "Zadar",
+        "postalCode": "23000"
+      },
+      "website": "https://www.bolnica-zadar.hr",
+      "dataUrl": "https://www.bolnica-zadar.hr/zalihe-i-darivanja-krvi/",
+      "bloodGroups": [
+        {
+          "type": "A+",
+          "amount": 22,
+          "max": 62,
+          "high": 50,
+          "low": 20,
+          "highPercentage": 80,
+          "lowPercentage": 32,
+          "amountPercentage": 35
+        },
+        {
+          "type": "A-",
+          "amount": 18,
+          "max": 25,
+          "high": 20,
+          "low": 8,
+          "highPercentage": 80,
+          "lowPercentage": 32,
+          "amountPercentage": 72
+        },
+        {
+          "type": "B+",
+          "amount": 15,
+          "max": 39,
+          "high": 30,
+          "low": 15,
+          "highPercentage": 76,
+          "lowPercentage": 38,
+          "amountPercentage": 38
+        },
+        {
+          "type": "B-",
+          "amount": 11,
+          "max": 18,
+          "high": 15,
+          "low": 6,
+          "highPercentage": 83,
+          "lowPercentage": 33,
+          "amountPercentage": 61
+        },
+        {
+          "type": "0+",
+          "amount": 64,
+          "max": 71,
+          "high": 60,
+          "low": 20,
+          "highPercentage": 84,
+          "lowPercentage": 28,
+          "amountPercentage": 90
+        },
+        {
+          "type": "0-",
+          "amount": 23,
+          "max": 37,
+          "high": 30,
+          "low": 12,
+          "highPercentage": 81,
+          "lowPercentage": 32,
+          "amountPercentage": 62
+        },
+        {
+          "type": "AB+",
+          "amount": 19,
+          "max": 26,
+          "high": 20,
+          "low": 10,
+          "highPercentage": 76,
+          "lowPercentage": 38,
+          "amountPercentage": 73
+        },
+        {
+          "type": "AB-",
+          "amount": 6,
+          "max": 12,
+          "high": 10,
+          "low": 4,
+          "highPercentage": 83,
+          "lowPercentage": 33,
+          "amountPercentage": 50
+        }
+      ]
+    }
+  ]
+}
