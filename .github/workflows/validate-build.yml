@@ -28,7 +28,7 @@ jobs:
           cd scrapper && npm install && cd ..
 
       - name: Collect data
-        run: node scrapper/index.js
+        run: cd scrapper && node index.js && cd ..
 
       - name: Build project
         run: npm run build
