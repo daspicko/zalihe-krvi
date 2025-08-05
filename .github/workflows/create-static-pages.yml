@@ -29,6 +29,11 @@ jobs:
         with:
           node-version: 22
 
+      - name: Configure environment
+        run: |
+          echo "VITE_BASE=/zalihe-krvi" > .env
+          sed -i "/baseToReplace/c\base: '/zalihe-krvi'," vite.config.js
+
       - name: Install dependencies
         run: |
           npm install

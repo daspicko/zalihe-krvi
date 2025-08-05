@@ -6,7 +6,7 @@ import { humanReadableDate } from './utils.js';
 import BloodLevelIndicator from './BloodLevelIndicator.jsx'
 
 const LOCAL_STORAGE_KEY_SELECTED_LOCATION = 'blood-supply-selectedLocation';
-const DATA_URL = '/data.json';
+const DATA_URL = `${import.meta.env.VITE_BASE || ''}/data.json`;
 const DEFAULT_LOCATION = 'Opća Bolnica Varaždin';
 
 function BlooodSupplies() {
