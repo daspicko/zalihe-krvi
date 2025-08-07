@@ -7,7 +7,7 @@ on:
     paths-ignore:
       - .github/**
   schedule:
-    - cron: '0 6 * * *'  # Runs daily at 6 AM
+    - cron: '0 5 * * *'  # Runs daily at 5 AM UTC (06:00 CET, 07:00 CEST)
 
 permissions:
   contents: read
