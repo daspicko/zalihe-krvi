@@ -25,9 +25,12 @@ function BloodLevelIndicator(props) {
       <div className="location">
         <div className="location-header">
           { props.location ? <>
-          <h3>{props.location?.name}</h3>
-          { props.location?.address ? <p>{props.location.address.street}, {props.location.address.postalCode} {props.location.address.city}</p> : undefined }
-          </> : undefined}
+            <h3>{props.location?.name}</h3>
+            { props.location?.address ? <> 
+              <p>{props.location.address.street}, {props.location.address.postalCode} {props.location.address.city}</p> 
+              <a href={props.location.dataUrl} target='blank'>Otvori stranicu</a> 
+            </>: undefined }
+          </> : undefined}      
         </div>
 
         <div className="legend">
