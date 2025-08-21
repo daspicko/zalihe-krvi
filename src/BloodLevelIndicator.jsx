@@ -34,8 +34,10 @@ function BloodLevelIndicator(props) {
         </div>
 
         <div className="legend">
-            <div><span className='high-indicator'></span> <p>Prevelike zalihe</p></div>
-            <div><span className='low-indicator'></span> <p>Premale zalihe</p></div>
+          <div><span className='high-indicator'></span></div>
+          <div>Prevelike zalihe</div>
+          <div><span className='low-indicator'></span></div>
+          <div>Premale zalihe</div>
         </div>
 
         <div className="blood-group">

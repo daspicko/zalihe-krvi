@@ -31,7 +31,7 @@ jobs:
 
       - name: Configure environment
         run: |
-          echo "VITE_BASE=/zalihe-krvi" > .env
+          echo "VITE_FIREBASE_API_KEY={{ env.VITE_FIREBASE_API_KEY }}" > .env
           sed -i "/baseToReplace/c\base: '/zalihe-krvi'," vite.config.js
 
       - name: Install dependencies
