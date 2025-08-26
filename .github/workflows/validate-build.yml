@@ -33,7 +33,11 @@ jobs:
           cd scrapper && npm install && cd ..
 
       - name: Collect data
-        run: cd scrapper && node index.js && cd ..
+        uses: nick-fields/retry@v3
+        with:
+          timeout_seconds: 30
+          max_attempts: 5
+          command: cd scrapper && node index.js && cd ..
 
       - name: Build project
         run: npm run build
