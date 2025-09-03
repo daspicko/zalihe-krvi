@@ -3,6 +3,7 @@
   "locations": [
     {
       "name": "Opća Bolnica Varaždin",
+      "topic": "ob-varazdin",
       "address": {
         "street": "Ulica Ivana Meštrovića 1",
         "city": "Varaždin",
@@ -13,56 +14,57 @@
       "bloodGroups": [
         {
           "type": "A+",
-          "highPercentage": 63,
-          "lowPercentage": 38,
-          "amountPercentage": 54
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "A-",
           "highPercentage": 75,
-          "lowPercentage": 38,
-          "amountPercentage": 75
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "B+",
-          "highPercentage": 70,
-          "lowPercentage": 30,
-          "amountPercentage": 100
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "B-",
-          "highPercentage": 67,
-          "lowPercentage": 33,
-          "amountPercentage": 70
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "0+",
-          "highPercentage": 67,
-          "lowPercentage": 33,
-          "amountPercentage": 83
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "0-",
-          "highPercentage": 67,
-          "lowPercentage": 42,
-          "amountPercentage": 72
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "AB+",
-          "highPercentage": 67,
-          "lowPercentage": 33,
-          "amountPercentage": 100
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "AB-",
           "highPercentage": 75,
-          "lowPercentage": 25,
-          "amountPercentage": 40
+          "lowPercentage": 15,
+          "amountPercentage": 0
         }
       ]
     },
     {
       "name": "Hrvatski zavod za transfuzijsku medicinu",
+      "topic": "hztm",
       "address": {
         "street": "Petrova 3",
         "city": "Zagreb",
@@ -73,88 +75,89 @@
       "bloodGroups": [
         {
           "type": "A+",
-          "amount": 268,
-          "max": 535,
-          "high": 510,
-          "low": 80,
-          "highPercentage": 95,
-          "lowPercentage": 14,
-          "amountPercentage": 50
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "A-",
-          "amount": 50,
-          "max": 118,
-          "high": 110,
-          "low": 17,
-          "highPercentage": 93,
-          "lowPercentage": 14,
-          "amountPercentage": 42
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "B+",
-          "amount": 156,
-          "max": 284,
-          "high": 255,
-          "low": 42,
-          "highPercentage": 89,
-          "lowPercentage": 14,
-          "amountPercentage": 54
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "B-",
-          "amount": 26,
-          "max": 65,
-          "high": 54,
-          "low": 9,
-          "highPercentage": 83,
-          "lowPercentage": 13,
-          "amountPercentage": 40
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "0+",
-          "amount": 148,
-          "max": 525,
-          "high": 510,
-          "low": 78,
-          "highPercentage": 97,
-          "lowPercentage": 14,
-          "amountPercentage": 28
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "0-",
-          "amount": 33,
-          "max": 111,
-          "high": 110,
-          "low": 16,
-          "highPercentage": 99,
-          "lowPercentage": 14,
-          "amountPercentage": 29
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "AB+",
-          "amount": 116,
-          "max": 127,
-          "high": 125,
-          "low": 19,
-          "highPercentage": 98,
-          "lowPercentage": 14,
-          "amountPercentage": 91
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "AB-",
-          "amount": 8,
-          "max": 30,
-          "high": 25,
-          "low": 4,
-          "highPercentage": 83,
-          "lowPercentage": 13,
-          "amountPercentage": 26
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         }
       ]
     },
     {
       "name": "KBC Split",
+      "topic": "kbc-split",
       "address": {
         "street": "Spinčićeva 1",
         "city": "Split",
@@ -165,56 +168,57 @@
       "bloodGroups": [
         {
           "type": "A+",
-          "highPercentage": 80,
-          "lowPercentage": 20,
-          "amountPercentage": 52
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "A-",
-          "highPercentage": 80,
-          "lowPercentage": 17,
-          "amountPercentage": 56
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "B+",
-          "highPercentage": 80,
-          "lowPercentage": 21,
-          "amountPercentage": 46
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "B-",
-          "highPercentage": 81,
-          "lowPercentage": 19,
-          "amountPercentage": 37
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "0+",
-          "highPercentage": 80,
-          "lowPercentage": 25,
-          "amountPercentage": 38
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "0-",
-          "highPercentage": 80,
-          "lowPercentage": 23,
-          "amountPercentage": 51
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "AB+",
-          "highPercentage": 80,
-          "lowPercentage": 23,
-          "amountPercentage": 58
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "AB-",
-          "highPercentage": 79,
-          "lowPercentage": 26,
-          "amountPercentage": 53
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         }
       ]
     },
     {
       "name": "KBC Rijeka",
+      "topic": "kbc-rijeka",
       "address": {
         "street": "Krešimirova ulica 42",
         "city": "Rijeka",
@@ -225,56 +229,57 @@
       "bloodGroups": [
         {
           "type": "A+",
-          "highPercentage": 80,
-          "lowPercentage": 32,
-          "amountPercentage": 47
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "A-",
           "highPercentage": 75,
-          "lowPercentage": 23,
-          "amountPercentage": 34
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "B+",
-          "highPercentage": 83,
-          "lowPercentage": 32,
-          "amountPercentage": 75
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "B-",
-          "highPercentage": 80,
-          "lowPercentage": 20,
-          "amountPercentage": 4
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "0+",
-          "highPercentage": 80,
-          "lowPercentage": 36,
-          "amountPercentage": 52
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "0-",
-          "highPercentage": 72,
-          "lowPercentage": 20,
-          "amountPercentage": 54
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "AB+",
           "highPercentage": 75,
-          "lowPercentage": 20,
-          "amountPercentage": 88
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "AB-",
-          "highPercentage": 73,
-          "lowPercentage": 20,
-          "amountPercentage": 40
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         }
       ]
     },
     {
       "name": "KBC Osijek",
+      "topic": "kbc-osijek",
       "address": {
         "street": "Ulica Josipa Huttlera 4",
         "city": "Osijek",
@@ -285,88 +290,89 @@
       "bloodGroups": [
         {
           "type": "A+",
-          "amount": 98,
-          "max": 457,
-          "high": 320,
-          "low": 114,
-          "highPercentage": 70,
-          "lowPercentage": 24,
-          "amountPercentage": 21
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "A-",
-          "amount": 47,
-          "max": 86,
-          "high": 60,
-          "low": 21,
-          "highPercentage": 69,
-          "lowPercentage": 24,
-          "amountPercentage": 54
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "B+",
-          "amount": 106,
-          "max": 229,
-          "high": 160,
-          "low": 57,
-          "highPercentage": 69,
-          "lowPercentage": 24,
-          "amountPercentage": 46
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "B-",
-          "amount": 35,
-          "max": 43,
-          "high": 30,
-          "low": 11,
-          "highPercentage": 69,
-          "lowPercentage": 25,
-          "amountPercentage": 81
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "0+",
-          "amount": 244,
-          "max": 500,
-          "high": 350,
-          "low": 125,
-          "highPercentage": 70,
-          "lowPercentage": 25,
-          "amountPercentage": 48
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "0-",
-          "amount": 35,
-          "max": 86,
-          "high": 60,
-          "low": 21,
-          "highPercentage": 69,
-          "lowPercentage": 24,
-          "amountPercentage": 40
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "AB+",
-          "amount": 71,
-          "max": 114,
-          "high": 80,
-          "low": 29,
-          "highPercentage": 70,
-          "lowPercentage": 25,
-          "amountPercentage": 62
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "AB-",
-          "amount": 24,
-          "max": 43,
-          "high": 30,
-          "low": 11,
-          "highPercentage": 69,
-          "lowPercentage": 25,
-          "amountPercentage": 55
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         }
       ]
     },
     {
       "name": "Opća Bolnica Zadar",
+      "topic": "ob-zadar",
       "address": {
         "street": "Bože Peričića 5",
         "city": "Zadar",
@@ -377,83 +383,83 @@
       "bloodGroups": [
         {
           "type": "A+",
-          "amount": 22,
-          "max": 62,
-          "high": 50,
-          "low": 20,
-          "highPercentage": 80,
-          "lowPercentage": 32,
-          "amountPercentage": 35
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "A-",
-          "amount": 18,
-          "max": 25,
-          "high": 20,
-          "low": 8,
-          "highPercentage": 80,
-          "lowPercentage": 32,
-          "amountPercentage": 72
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "B+",
-          "amount": 15,
-          "max": 39,
-          "high": 30,
+          "amount": 0,
+          "max": 100,
+          "high": 75,
           "low": 15,
-          "highPercentage": 76,
-          "lowPercentage": 38,
-          "amountPercentage": 38
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "B-",
-          "amount": 11,
-          "max": 18,
-          "high": 15,
-          "low": 6,
-          "highPercentage": 83,
-          "lowPercentage": 33,
-          "amountPercentage": 61
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "0+",
-          "amount": 64,
-          "max": 71,
-          "high": 60,
-          "low": 20,
-          "highPercentage": 84,
-          "lowPercentage": 28,
-          "amountPercentage": 90
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "0-",
-          "amount": 23,
-          "max": 37,
-          "high": 30,
-          "low": 12,
-          "highPercentage": 81,
-          "lowPercentage": 32,
-          "amountPercentage": 62
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "AB+",
-          "amount": 19,
-          "max": 26,
-          "high": 20,
-          "low": 10,
-          "highPercentage": 76,
-          "lowPercentage": 38,
-          "amountPercentage": 73
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         },
         {
           "type": "AB-",
-          "amount": 6,
-          "max": 12,
-          "high": 10,
-          "low": 4,
-          "highPercentage": 83,
-          "lowPercentage": 33,
-          "amountPercentage": 50
+          "amount": 0,
+          "max": 100,
+          "high": 75,
+          "low": 15,
+          "highPercentage": 75,
+          "lowPercentage": 15,
+          "amountPercentage": 0
         }
       ]
     }
