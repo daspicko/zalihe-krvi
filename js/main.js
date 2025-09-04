@@ -49,7 +49,8 @@ const subscribeToPushNotifications = async () => {
     subscribeButtonElement.disabled = true;
     subscribeLoadingElement.style.display = 'inline-block';
 
-    const result = await subscribe(subscribeLocation, subscribeGroup);
+    const location = locations.find(location => location.id === subscribeLocation);
+    const result = await subscribe(location, subscribeGroup);
     
     bootstrap.Modal.getInstance(document.querySelector('#subscribeModal')).hide();
 
@@ -57,12 +58,11 @@ const subscribeToPushNotifications = async () => {
     subscribeLocationElement.disabled = false;
     subscribeButtonElement.disabled = false;
     subscribeLoadingElement.style.display = 'none';
-
-    const subscribeLocationName = locations.find(location => location.id === subscribeLocation)?.name || subscribeLocation;
+    
     if (result.success) {
         document.querySelector('.alert-container').innerHTML += `
             <div class="alert alert-success" role="alert">
-                Prijavili ste se za obavijest o darivanju krvne grupe <b>${subscribeGroup}</b> kada se zaliha smanji u <b>${subscribeLocationName}</b>.
+                Prijavili ste se za obavijest o darivanju krvne grupe <b>${subscribeGroup}</b> kada se zaliha smanji u <b>${location.name}</b>.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         `;

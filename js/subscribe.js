@@ -5,7 +5,7 @@ import { FIREBASE_API_KEY, BE_HOST, BE_X_API_KEY, FIREBASE_CONFIG } from "./conf
 
 let app;
 
-const subscribe = async (locationId, bloodType) => {
+const subscribe = async (location, bloodType) => {
     if (!app) {
         app = initializeApp(FIREBASE_CONFIG);
     }
@@ -25,7 +25,7 @@ const subscribe = async (locationId, bloodType) => {
                 },
                 body: JSON.stringify({
                     registrationTokens: [token],
-                    locationId,
+                    locationId: location.id,
                     bloodType
                 })
             });
@@ -38,7 +38,7 @@ const subscribe = async (locationId, bloodType) => {
                     data
                 }
             } else {
-                console.error(`Error subscribing to receive messages for ${locationName}, blood type ${bloodType}!`, response.status);
+                console.error(`Error subscribing to receive messages for ${location.name}, blood type ${bloodType}!`, response.status);
             }
         } else {
             console.log('No registration token available. Request permission to generate one.');
