@@ -50,7 +50,7 @@ let groupsConfigCode = (await retrieveText('https://www.kbco.hr/wp-content/theme
     .split('function startRender()')[0]
     .replaceAll('minus', '-').replaceAll('plus', '+').replaceAll('O', '0')
     .replace('var bloodLevels =', 'return');
-let groupsConfig = new Function('return' + groupsConfigCode)();
+let groupsConfig = new Function('return' + groupsConfigCode)(); // exec script sring
 let currentStatistics = await parseStatistics(`https://www.kbco.hr/wp-content/krvstats/${getDateForFileName()}.html`);
 document.querySelectorAll('div#supplies div.measure').forEach(groupDiv => {
     const type = groupDiv.querySelector('div.name').textContent.trim();
@@ -62,7 +62,7 @@ document.querySelectorAll('div#supplies div.measure').forEach(groupDiv => {
     group.highPercentage = parseInt(group.high / group.max * 100);
     group.low = groupConfig.optMin;
     group.lowPercentage = parseInt(group.low / group.max * 100);
-    group.amount = currentStatistics.find(data => data.type === type).amount;
+    group.amount = currentStatistics.find(data => data.type === type)?.amount || 0; // Statistics may not return values for group
     group.amountPercentage = parseInt(group.amount / group.max * 100);
 });
 
@@ -75,7 +75,7 @@ groupsConfigCode = document.querySelector('div.custom_js script')
     .replaceAll('document.getElementById', '')
     .replace('O+', '0+').replace('O-', '0-')
     .replace('const groups = ', 'return');
-groupsConfig = new Function(groupsConfigCode)();
+groupsConfig = new Function(groupsConfigCode)(); // exec script sring
 currentStatistics = await parseStatistics('https://www.bolnica-zadar.hr/doze/blood_data.html');
 document.querySelectorAll('div.eprueta').forEach(groupDiv => {
     const item = groupDiv.querySelector('div.eprueta-blood.animate-blood');
@@ -91,7 +91,7 @@ document.querySelectorAll('div.eprueta').forEach(groupDiv => {
     group.highPercentage = parseInt(group.high / group.max * 100);
     group.low = groupConfig.bline;
     group.lowPercentage = parseInt(group.low / group.max * 100);
-    group.amount = currentStatistics.find(data => data.type === type).amount;
+    group.amount = currentStatistics.find(data => data.type === type)?.amount || 0; // Statistics may not return values for group
     group.amountPercentage = parseInt(group.amount / group.max * 100);
 });
 
@@ -103,7 +103,7 @@ groupsConfigCode = document.innerText.split('const groups =')[1]
     .split('const empty = 25;')[0]
     .replaceAll('document.getElementById', '')
     .replace('O+', '0+').replace('O-', '0-');
-groupsConfig = new Function('return' + groupsConfigCode)();
+groupsConfig = new Function('return' + groupsConfigCode)(); // exec script sring
 
 currentStatistics = await parseStatistics('https://hztm.hr/doze/blood_data.html');
 document.querySelectorAll('div.eprueta').forEach(groupDiv => {
@@ -118,7 +118,7 @@ document.querySelectorAll('div.eprueta').forEach(groupDiv => {
     group.highPercentage = parseInt(group.high / group.max * 100);
     group.low = parseInt(group.max * 0.15); // Set low to 15% of max due to missing data
     group.lowPercentage = parseInt(group.low / group.max * 100);
-    group.amount = currentStatistics.find(data => data.type === type).amount;
+    group.amount = currentStatistics.find(data => data.type === type)?.amount || 0; // Statistics may not return values for group
     group.amountPercentage = parseInt(group.amount / group.max * 100);
 });
 
