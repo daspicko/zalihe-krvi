@@ -19,6 +19,10 @@ if [[ ! -f data.json ]]; then
     exit 1
 fi
 
-cp -r index.html js/ css/ assets/ data.json firebase-messaging-sw.js dist/
+cp -r index.html css/ assets/ data.json firebase-messaging-sw.js dist/
+
+npm install
+./node_modules/rollup/dist/bin/rollup  -c rollup.config.js
+cp -r js/libs dist/js/libs/
 
 echo "Build completed successfully."
