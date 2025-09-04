@@ -120,14 +120,11 @@ Promise.all([
 
     const alertTitleElement = document.querySelector('#alertModalTitle');
     const alertTextElement = document.querySelector('#alertModalText');
-    const alertImageElement = document.querySelector('#alertModalImage');
 
     messaging.onMessage((payload) => {
-        console.log('Message received. ', payload);
-        const { title, image, body } = payload.notification;
+        const { title, body } = payload.notification;
         alertTitleElement.innerText = title;
         alertTextElement.innerHTML = body;
-        alertImageElement.src = image;
         bootstrap.Modal.getOrCreateInstance(document.querySelector('#alertModal')).show();
     });
 })
