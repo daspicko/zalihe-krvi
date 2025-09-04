@@ -1,5 +1,6 @@
 export default [
         {
+            id: "ob-varazdin",
             name: "Opća Bolnica Varaždin",
             address: {
                 "street": "Ulica Ivana Meštrovića 1",
@@ -68,6 +69,7 @@ export default [
             ]
         },
         {
+            id: "hztm",
             name: "Hrvatski zavod za transfuzijsku medicinu",
             address: {
                 "street": "Petrova 3",
@@ -136,6 +138,7 @@ export default [
             ]
         },
         {
+            id: "kbc-split",
             name: "KBC Split",
             address: {
                 "street": "Spinčićeva 1",
@@ -204,6 +207,7 @@ export default [
             ]
         },
         {
+            id: "kbc-rijeka",
             name: "KBC Rijeka",
             address: {
                 "street": "Krešimirova ulica 42",
@@ -272,6 +276,7 @@ export default [
             ]
         },
         {
+            id: "kbc-osijek",
             name: "KBC Osijek",
             address: {
                 "street": "Ulica Josipa Huttlera 4",
@@ -340,6 +345,7 @@ export default [
             ]
         },
         {
+            id: "ob-zadar",
             name: "Opća Bolnica Zadar",
             address: {
                 "street": "Bože Peričića 5",

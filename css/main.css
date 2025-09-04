@@ -1,0 +1,134 @@
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'), url(../assets/fonts/Roboto-Regular.ttf) format('truetype');
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 1rem;
+}
+
+:root {
+    --blood-bag-image-ratio: 210 / 297;
+    --blood-bag-size: 15rem;
+    --blood-bag-limits-width: 2rem;
+    --blood-bag-limits-height: 2px;
+}
+
+.location {
+    margin-top: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding-bottom: 2rem;
+}
+
+.location-header {
+    padding-top: 1rem;
+    padding-left: 1rem;
+    margin-bottom: 2rem;
+}
+
+.blood-groups {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    row-gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.blood-bag {
+    position: relative;
+    background-image: url(../assets/images/BloodBag.webp);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: var(--blood-bag-size);
+    width: calc(var(--blood-bag-size) * var(--blood-bag-image-ratio));
+}
+
+.blood-bag-filler {
+    position: relative;
+    background-image: url(../assets/images/BloodBagFiller.webp);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: var(--blood-bag-size);
+}
+
+.high-indicator {
+    position: absolute;
+    width: var(--blood-bag-limits-width);
+    height: var(--blood-bag-limits-height);
+    background-color: #6DCFF6;
+}
+
+.low-indicator {
+    position: absolute;
+    width: var(--blood-bag-limits-width);
+    height: var(--blood-bag-limits-height);
+    background-color: #FFBF02;
+}
+
+.blood-type {
+    position: absolute;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    user-select: none;
+}
+
+.legend {
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: start;
+    padding-bottom: 1rem;
+
+    .high-indicator {
+        margin-top: 0.6rem;
+    }
+
+    .low-indicator {
+        margin-top: 0.6rem;
+    }
+
+    div {
+        margin-left: 0.25rem;
+    }
+}
+
+.notificationButton {
+    position: absolute;
+
+    @media (max-width: 767px) {
+        bottom: 0.5rem;
+    }
+    @media (min-width: 768px) {
+        top: 0.5rem;
+    }
+    right: 0;
+
+    width: 4rem;
+    height: 4rem;
+    border-radius: 0 !important;
+
+    svg {
+        color: #fff;
+        animation: swing 2s infinite ease-in-out;
+    }
+}
+
+.notificationButton.top {
+    @media (max-width: 767px) {
+        position: fixed;
+        top: 0.5rem;
+    }
+}
+
+@keyframes swing {
+  0%   { transform: rotate(0deg) scale(2); }
+  25%  { transform: rotate(-15deg) scale(2); }
+  50%  { transform: rotate(15deg) scale(2); }
+  75%  { transform: rotate(-15deg) scale(2); }
+  100% { transform: rotate(0deg) scale(2); }
+}
