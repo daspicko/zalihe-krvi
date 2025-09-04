@@ -1,3 +1,6 @@
+import dotenv from 'dotenv'
+dotenv.config();
+
 import fetch from 'node-fetch'
 import { parse } from 'node-html-parser'
 
@@ -33,8 +36,22 @@ const parseStatistics = async (url) => {
     return data;       
 }
 
+const sendNotification = async (locationId, bloodType) => {
+    return await fetch(`${process.env.BE_HOST}/send`, {
+        method: 'POST',
+        headers: {
+            'x-api-key': process.env.BE_X_API_KEY
+        },
+        body: JSON.stringify({
+            locationId,
+            bloodType
+        })
+    });
+}
+
 export {
     retrieveText,
     retrieveDocument,
-    parseStatistics
+    parseStatistics,
+    sendNotification
 }

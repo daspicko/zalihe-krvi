@@ -31,23 +31,15 @@ jobs:
 
       - name: Configure environment
         run: |
-          echo "VITE_FIREBASE_API_KEY={{ env.VITE_FIREBASE_API_KEY }}" > .env
-          sed -i "/baseToReplace/c\base: '/zalihe-krvi'," vite.config.js
+          echo "BE_HOST=${{ secrets.BE_HOST }}" >> $GITHUB_ENV
+          echo "BE_X_API_KEY=${{ secrets.BE_X_API_KEY }}" >> $GITHUB_ENV
 
-      - name: Install dependencies
-        run: |
-          npm install
-          cd scrapper && npm install && cd ..
-
-      - name: Collect data
+      - name: Build project
         uses: nick-fields/retry@v3
         with:
           timeout_seconds: 30
           max_attempts: 5
-          command: cd scrapper && node index.js && cd ..
-
-      - name: Build project
-        run: npm run build
+          command: ./build.sh
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
