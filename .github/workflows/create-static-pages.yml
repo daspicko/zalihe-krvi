@@ -1,4 +1,5 @@
 name: Create Static Pages
+
 on:
   workflow_dispatch:
   push:
