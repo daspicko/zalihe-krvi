@@ -2,7 +2,7 @@ import fs from 'fs'
 
 import locations from './locations.js'
 
-import { retrieveText, retrieveDocument, parseStatistics, sendNotification } from './utils/fetchUtils.js'
+import { retrieveText, retrieveDocument, parseStatistics } from './utils/fetchUtils.js'
 import { getDateForFileName } from './utils/dateUtils.js'
 
 // Opća Bolnica Varaždin
@@ -121,15 +121,6 @@ document.querySelectorAll('div.eprueta').forEach(groupDiv => {
     group.amount = currentStatistics.find(data => data.type === type)?.amount || 0; // Statistics may not return values for group
     group.amountPercentage = parseInt(group.amount / group.max * 100);
 });
-
-// Send notifications
-for (const location of locations) {
-    for (const group of location.bloodGroups) {
-        if (group.amountPercentage < group.lowPercentage) {
-            await sendNotification(location.id, group.type);
-        }
-    }
-}
 
 // Timestamp is not used for filename as we are creating static file every day
 fs.writeFileSync(`../data.json`, JSON.stringify({
