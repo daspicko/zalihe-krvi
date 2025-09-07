@@ -59,7 +59,7 @@ const subscribeToPushNotifications = async () => {
     subscribeButtonElement.disabled = false;
     subscribeLoadingElement.style.display = 'none';
     
-    if (result.success) {
+    if (result?.success) {
         document.querySelector('.alert-container').innerHTML += `
             <div class="alert alert-success" role="alert">
                 Prijavili ste se za obavijest o darivanju krvne grupe <b>${subscribeGroup}</b> kada se zaliha smanji u <b>${location.name}</b>.
