@@ -69,7 +69,7 @@ const subscribeToPushNotifications = async () => {
     } else {
         document.querySelector('.alert-container').innerHTML += `
             <div class="alert alert-danger" role="alert">
-                Došlo je do pogreške prilikom prijave za obavijesti. Pokušajte ponovno kasnije.
+                ${result?.message || 'Došlo je do pogreške prilikom prijave na obavijesti. Pokušajte ponovno.'}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         `;

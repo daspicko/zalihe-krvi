@@ -34,14 +34,26 @@ const subscribe = async (location, bloodType) => {
                 const data = await response.json();
                 return {
                     success: true,
-                    message: 'Subscribed successfully!',
                     data
                 }
             } else {
                 console.error(`Error subscribing to receive messages for ${location.name}, blood type ${bloodType}!`, response.status);
+                return {
+                    success: false,
+                    message: `Došlo je do pogreške prilikom prijave na obavijesti za lokaciju ${location.name} i krvnu grupu ${bloodType}. Pokušajte ponovno.`
+                }
             }
         } else {
             console.log('No registration token available. Request permission to generate one.');
+            return {
+                success: false,
+                message: `Došlo je do pogreške prilikom registracije servisa. Molimo osvježite stranicu.`
+            }
+        }
+    } else {
+        return {
+            success: false,
+            message: 'Nažalost, vaš uređaj ne podržava ovu funkcionalnost. Pokušajte s drugim uređajem ili preglednikom.'
         }
     }
 }
