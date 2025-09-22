@@ -23,6 +23,7 @@ cp index.html dist/
 cp 404.html dist/
 cp data.json dist/
 cp firebase-messaging-sw.js dist/
+cp manifest.json dist/
 
 cp -r css/ dist/
 cp -r assets/ dist/
