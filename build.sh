@@ -29,7 +29,7 @@ cp -r css/ dist/
 cp -r assets/ dist/
 
 npm install
-./node_modules/rollup/dist/bin/rollup  -c rollup.config.js
+npm run rollup
 
 cp -r js/libs dist/js/libs/
 
