@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Jednostavan prikaz zaliha krvi u Republici Hrvatskoj na jednom mjestu. Podaci su preuzeti sa službenih izvora te se osvježavaju jednom dnevno.",
   "main": "./js/main.js",
+  "type": "module",
   "scripts": {
     "rollup": "./node_modules/rollup/dist/bin/rollup -c rollup.config.js"
   },
