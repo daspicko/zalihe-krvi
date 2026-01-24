@@ -1,0 +1,38 @@
+# robots.txt for Zalihe krvi u Hrvatskoj
+# https://zalihe-krvi.apprepo.eu
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow crawling of assets that don't need indexing
+Disallow: /firebase-messaging-sw.js
+Disallow: /manifest.json
+
+# Disallow crawling of build and deployment scripts
+Disallow: /*.sh$
+
+# Allow CSS and JS for proper rendering (important for PageSpeed Insights)
+Allow: /css/
+Allow: /js/
+Allow: /assets/
+
+# Sitemap location (create a sitemap.xml file for better SEO)
+# Sitemap: https://zalihe-krvi.apprepo.eu/sitemap.xml
+
+# Crawl-delay (optional, remove if not needed)
+# Crawl-delay: 1
+
+# Specific bot configurations
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /assets/images/
+
+# Block bad bots (optional)
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10

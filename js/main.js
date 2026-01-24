@@ -7,7 +7,7 @@ import { LOCAL_STORAGE_KEY_SELECTED_LOCATION, DEFAULT_LOCATION, FIREBASE_CONFIG 
 let updated, locations, selectedLocation;
 
 const renderLocationInfo = (location) => {
-    document.querySelector('div.location-header h3').innerText = location.name;
+    document.querySelector('div.location-header h2').innerText = location.name;
     document.querySelector('div.location-header p').innerText = `${location.address.street}, ${location.address.postalCode} ${location.address.city}`;
     document.querySelector('div.location-header a').href = location.dataUrl;
 
