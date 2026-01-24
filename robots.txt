@@ -10,7 +10,7 @@ Disallow: /firebase-messaging-sw.js
 Disallow: /manifest.json
 
 # Disallow crawling of build and deployment scripts
-Disallow: /*.sh$
+Disallow: /*.sh
 
 # Allow CSS and JS for proper rendering (important for PageSpeed Insights)
 Allow: /css/

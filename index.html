@@ -18,14 +18,16 @@
   <meta property="og:url" content="https://zalihe-krvi.apprepo.eu" />
   <meta property="og:type" content="website" />
 
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
   <link rel="preload" fetchpriority="high" href="assets/images/BloodBag.webp" as="image" type="image/webp" />
   <link rel="preload" fetchpriority="high" href="assets/images/BloodBagFiller.webp" as="image" type="image/webp" />
 
   <!-- Defer CSS to eliminate render-blocking resources -->
-  <link rel="preload" href="css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet" href="css/bootstrap.min.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="css/bootstrap.min.css"></noscript>
   
-  <link rel="preload" href="css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet" href="css/main.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="css/main.css"></noscript>
 </head>
 
