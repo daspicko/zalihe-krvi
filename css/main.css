@@ -78,6 +78,7 @@ body {
 
 .legend {
     padding-left: 1rem;
+    
     display: flex;
     flex-direction: row;
     gap: 2rem;
@@ -97,8 +98,9 @@ body {
     }
 }
 
-.notificationButton {
+.actions-container {
     position: absolute;
+    right: 0;
 
     @media (max-width: 767px) {
         bottom: 0.5rem;
@@ -106,29 +108,41 @@ body {
     @media (min-width: 768px) {
         top: 0.5rem;
     }
-    right: 0;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.action-button {
     width: 4rem;
     height: 4rem;
     border-radius: 0 !important;
 
     svg {
         color: #fff;
+        scale: 2;
+    }
+
+    svg.bi-bell {
+        color: #fff;
         animation: swing 2s infinite ease-in-out;
     }
 }
 
-.notificationButton.top {
+.actions-container.top {
     @media (max-width: 767px) {
         position: fixed;
         top: 0.5rem;
+        bottom: unset;
     }
 }
 
 @keyframes swing {
-  0%   { transform: rotate(0deg) scale(2); }
-  25%  { transform: rotate(-15deg) scale(2); }
-  50%  { transform: rotate(15deg) scale(2); }
-  75%  { transform: rotate(-15deg) scale(2); }
-  100% { transform: rotate(0deg) scale(2); }
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(-15deg); }
+  50%  { transform: rotate(15deg); }
+  75%  { transform: rotate(-15deg); }
+  100% { transform: rotate(0deg); }
 }
