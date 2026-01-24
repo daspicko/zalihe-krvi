@@ -11,16 +11,18 @@ const renderLocationInfo = (location) => {
     document.querySelector('div.location-header p').innerText = `${location.address.street}, ${location.address.postalCode} ${location.address.city}`;
     document.querySelector('div.location-header a').href = location.dataUrl;
 
-    document.querySelector('div.blood-groups').innerHTML = location.bloodGroups.map(group => `
-        <div>
-            <div class="blood-bag">   
-            <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black ${transformPercentageToImageHeight(group.amountPercentage)}%, transparent 0%)"></div>
-            <div class="high-indicator" style="bottom: ${transformPercentageToImageHeight(group.highPercentage)}%"></div>
-            <div class="low-indicator" style="bottom: ${transformPercentageToImageHeight(group.lowPercentage)}%"></div>
-            <p class="blood-type">${group.type}</p>
-            </div>
-        </div>
-    `).join('');
+
+    const indicators = document.querySelectorAll('div.blood-groups > div');
+
+    for (let i = 0; i < location.bloodGroups.length; i++) {
+        const group = location.bloodGroups[i];
+        const indicator = indicators[i];
+
+        indicator.querySelector('.blood-bag-filler').style.maskImage = `linear-gradient(to top, black ${transformPercentageToImageHeight(group.amountPercentage)}%, transparent 0%)`;
+        indicator.querySelector('.high-indicator').style.bottom = `${transformPercentageToImageHeight(group.highPercentage)}%`;
+        indicator.querySelector('.low-indicator').style.bottom = `${transformPercentageToImageHeight(group.lowPercentage)}%`;
+        indicator.querySelector('.blood-type').innerText = group.type;
+    }
 }
 
 const updateSelectedLocation = (e) => {
@@ -102,12 +104,13 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 });
 
 window.addEventListener("scroll", () => {
-    if (window.scrollY > window.innerHeight - 100) {
+    const actionsContainer = document.querySelector(".actions-container");
+    if (window.scrollY > window.innerHeight - actionsContainer.clientHeight) {
         // if user scrolled past 1 screen height → move to top
-        document.querySelector(".notificationButton").classList.add("top");
+        actionsContainer.classList.add("top");
     } else {
         // otherwise → keep bottom
-        document.querySelector(".notificationButton").classList.remove("top");
+        actionsContainer.classList.remove("top");
     }
 });
 

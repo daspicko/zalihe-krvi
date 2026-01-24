@@ -30,16 +30,23 @@
 <body>
   <div>
     <h1 class="text-center">Zalihe krvi u RH</h1>
-    <p class="text-center">Pratite zalihe krvi u Hrvatskoj i budite obaviješteni kada su zalihe Vaše krvne grupe premale.</p>
 
     <div>
-      <!-- Open subscribe modal -->
-      <button class="btn btn-danger notificationButton" type="button" data-bs-toggle="modal" data-bs-target="#subscribeModal" aria-label="Prijavi me za obavijesti kad su zalihe premale">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
-          <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6"/>
-        </svg>
-      </button>
-
+      <div class="actions-container">
+        <!-- Open subscribe modal -->
+        <button class="btn btn-danger action-button" type="button" data-bs-toggle="modal" data-bs-target="#subscribeModal" aria-label="Prijavi me za obavijesti kad su zalihe premale">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6"/>
+          </svg>
+        </button>
+        <button class="btn btn-info action-button" type="button" data-bs-toggle="modal" data-bs-target="#aboutModal" aria-label="Informacije o aplikaciji">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+          </svg>
+        </button>
+      </div>
+      
       <!-- Subscribe Modal -->
       <div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -102,10 +109,42 @@
       <div class="alert-container">
 
       </div>
+
+      <!-- About Modal -->
+      <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="aboutModalLabel">O aplikaciji</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p><b>Podaci su ažurirani:</b> <span id="update-time"></span></p>
+              <p><b>Autor:</b> Davorin Špičko</p>
+              <p><b>O projektu</b></p>
+              <p>Projekt je nastao na temelju razgovora s radnicima Opće bolnice Varaždin tokom kojeg je spomenuta aplikacija za praćenje stanja krvnih grupa po bolničkim centrima u Hrvatskoj. S obzirom da u trenutku razgovora nisam bio upoznat sa aplikacijom, laganim pretraživanjem doznao sam da se radi o <a href="https://darivanjekrvi.com/" target="_blank" rel="noopener">darivanjekrvi.com</a> koju su kreirali developeri iz <a href="https://decode.agency/" target="_blank" rel="noopener">Agencije DECODE</a> na jednom od hackatona. Ovo naravno nije reklama, već povijest ideje i kontekst nastanka ove aplikacije.</a></p>
+              <p>Njihova aplikacija nažalost više nije dostupna na GooglePlay, ali je dostupna za iPhone uređaje te ju možete preuzeti na <a href="https://apps.apple.com/hr/app/darivanje-krvi/id1531982081">Darovanje Krvi</a>. Razlog nedostupnosti za android uređaje nisam saznao, te razloge mogu samo nagađati, ali nekako mi je najvjerojatnija da se aplikacija nije ažurirala te ju je Google maknuo sa Play Store iz sigurnosnih razloga jer nije pratila API najnovijeg Android OS-a. No to je samo moje mišljenje i može u potpunosti odskakati od stvarnog razloga.</p>
+              <p>Neovisno o razlogu, aplikacija je bila inspiracija za izradu ove aplikacije sa jednostavnim zahtjevima (sortiranim po važnosti) prema kojima aplikacija:
+                <ol>
+                  <li>mora biti u potpunosti besplatna za održavanje i korištenje</li>
+                  <li>mora raditi na svim uređajima bez obzira na operativni sustav</li>
+                  <li>mora prikazati zalihe krvi svih transfuzijskih centara koji odbjavljuju zalihe na svojim službenim internet stranicama</li>
+                  <li>mora biti jednostavna za korištenje</li>
+                  <li>mora biti brza (Lighthouse performance score > 90)</li>
+                  <li>mora biti dostupna u 99.99% vremena velikom broju korisnika</li>
+                  <li>može slati obavijesti korisnicima kada su zalihe njihove krvne grupe premale u određenom transfuzijskom centru</li>
+                </ol>
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="location-selector">
-      <p><b>Ažurirano:</b> <span id="update-time"></span></p>
       <form>
         <div class="mb-3">
           <select class="form-select" name="location" id="location-select"></select>
@@ -115,8 +154,8 @@
 
     <div class="location">
       <div class="location-header">
-        <h3> </h3>
-        <p> </p>
+        <h3>&nbsp;</h3>
+        <p>&nbsp;</p>
         <a href="" target="blank">Otvori stranicu</a>
       </div>
 
@@ -128,7 +167,70 @@
       </div>
 
       <div class="blood-groups">
-        <!-- Dynamically populated -->
+        <div>
+          <div class="blood-bag">   
+          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
+          <div class="high-indicator" style="bottom: 0%"></div>
+          <div class="low-indicator" style="bottom: 0%"></div>
+          <p class="blood-type"></p>
+          </div>
+        </div>
+        <div>
+          <div class="blood-bag">   
+          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
+          <div class="high-indicator" style="bottom: 0%"></div>
+          <div class="low-indicator" style="bottom: 0%"></div>
+          <p class="blood-type"></p>
+          </div>
+        </div>
+        <div>
+          <div class="blood-bag">   
+          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
+          <div class="high-indicator" style="bottom: 0%"></div>
+          <div class="low-indicator" style="bottom: 0%"></div>
+          <p class="blood-type"></p>
+          </div>
+        </div>
+        <div>
+          <div class="blood-bag">   
+          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
+          <div class="high-indicator" style="bottom: 0%"></div>
+          <div class="low-indicator" style="bottom: 0%"></div>
+          <p class="blood-type"></p>
+          </div>
+        </div>
+        <div>
+          <div class="blood-bag">   
+          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
+          <div class="high-indicator" style="bottom: 0%"></div>
+          <div class="low-indicator" style="bottom: 0%"></div>
+          <p class="blood-type"></p>
+          </div>
+        </div>
+        <div>
+          <div class="blood-bag">   
+          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
+          <div class="high-indicator" style="bottom: 0%"></div>
+          <div class="low-indicator" style="bottom: 0%"></div>
+          <p class="blood-type"></p>
+          </div>
+        </div>
+        <div>
+          <div class="blood-bag">   
+          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
+          <div class="high-indicator" style="bottom: 0%"></div>
+          <div class="low-indicator" style="bottom: 0%"></div>
+          <p class="blood-type"></p>
+          </div>
+        </div>
+        <div>
+          <div class="blood-bag">   
+          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
+          <div class="high-indicator" style="bottom: 0%"></div>
+          <div class="low-indicator" style="bottom: 0%"></div>
+          <p class="blood-type"></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

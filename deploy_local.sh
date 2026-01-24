@@ -1,4 +1,4 @@
 ./build.sh
 
-sudo rm -rf /var/www/html/zalihe-krvi/*
-sudo cp -r dist/* /var/www/html/zalihe-krvi/
+sudo rm -rf /var/www/local/zalihe-krvi.apprepo.eu/*
+sudo cp -r dist/* /var/www/local/zalihe-krvi.apprepo.eu/
