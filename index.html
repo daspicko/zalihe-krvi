@@ -18,17 +18,21 @@
   <meta property="og:url" content="https://zalihe-krvi.apprepo.eu" />
   <meta property="og:type" content="website" />
 
-  <link rel="preconnect" href="https://www.googletagmanager.com" />
-  <link rel="preconnect" href="https://www.gstatic.com" />
-  <link rel="preload" href="assets/images/BloodBag.webp" as="image" type="image/webp" />
-  <link rel="preload" href="assets/images/BloodBagFiller.webp" as="image" type="image/webp" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+  <link rel="preload" fetchpriority="high" href="assets/images/BloodBag.webp" as="image" type="image/webp" />
+  <link rel="preload" fetchpriority="high" href="assets/images/BloodBagFiller.webp" as="image" type="image/webp" />
 
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/main.css" />
+  <!-- Defer CSS to eliminate render-blocking resources -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="css/bootstrap.min.css"></noscript>
+  
+  <link rel="stylesheet" href="css/main.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="css/main.css"></noscript>
 </head>
 
 <body>
-  <div>
+  <main>
     <h1 class="text-center">Zalihe krvi u RH</h1>
 
     <div>
@@ -119,7 +123,6 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <p><b>Podaci su ažurirani:</b> <span id="update-time"></span></p>
               <p><b>Autor:</b> Davorin Špičko</p>
               <p><b>O projektu</b></p>
               <p>Projekt je nastao na temelju razgovora s radnicima Opće bolnice Varaždin tokom kojeg je spomenuta aplikacija za praćenje stanja krvnih grupa po bolničkim centrima u Hrvatskoj. S obzirom da u trenutku razgovora nisam bio upoznat sa aplikacijom, laganim pretraživanjem doznao sam da se radi o <a href="https://darivanjekrvi.com/" target="_blank" rel="noopener">darivanjekrvi.com</a> koju su kreirali developeri iz <a href="https://decode.agency/" target="_blank" rel="noopener">Agencije DECODE</a> na jednom od hackatona. Ovo naravno nije reklama, već povijest ideje i kontekst nastanka ove aplikacije.</p>
@@ -144,16 +147,18 @@
     </div>
 
     <div class="location-selector">
+      <p><b>Podaci su ažurirani:</b> <span id="update-time"></span></p>
+
       <form>
         <div class="mb-3">
-          <select class="form-select" name="location" id="location-select"></select>
+          <select class="form-select" name="location" id="location-select" aria-label="Odaberi transfuzijski centar"></select>
         </div>
       </form>
     </div>
 
     <div class="location">
       <div class="location-header">
-        <h3>&nbsp;</h3>
+        <h2>&nbsp;</h2>
         <p>&nbsp;</p>
         <a href="" target="blank">Otvori stranicu</a>
       </div>
@@ -232,7 +237,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-1LPC3953B9"></script>
