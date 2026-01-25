@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
   <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
   <link rel="preload" fetchpriority="high" href="assets/images/BloodBag.webp" as="image" type="image/webp" />
-  <link rel="preload" href="assets/images/BloodBagFiller.webp" as="image" type="image/webp" />
+  <link rel="preload" fetchpriority="high" href="assets/images/BloodBagFiller.webp" as="image" type="image/webp" />
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/main.css">
@@ -237,18 +237,17 @@
   </main>
 
   <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1LPC3953B9"></script>
   <script>
-    import('https://www.googletagmanager.com/gtag/js?id=G-1LPC3953B9').then(() => {
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'G-1LPC3953B9');
-    });
+    gtag('config', 'G-1LPC3953B9');
   </script>
 
   <script type="module" src="js/main.js"></script>
-  <script async src="js/libs/bootstrap.bundle.min.js"></script>
+  <script src="js/libs/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
