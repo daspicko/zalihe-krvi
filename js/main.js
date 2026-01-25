@@ -1,5 +1,4 @@
 import { fetchData, humanReadableDate, transformPercentageToImageHeight } from "./utils.js"
-import LOCATION_PLACEHOLDER from "./location-placeholder.js"
 import { subscribe } from './subscribe.js'
 
 import { LOCAL_STORAGE_KEY_SELECTED_LOCATION, DEFAULT_LOCATION, FIREBASE_CONFIG } from "./config.js";
@@ -7,11 +6,9 @@ import { LOCAL_STORAGE_KEY_SELECTED_LOCATION, DEFAULT_LOCATION, FIREBASE_CONFIG 
 let updated, locations, selectedLocation;
 
 const renderLocationInfo = (location) => {
-    const isLocationReady = location.address.street || location.address.city || location.address.postalCode;
-    
-    document.querySelector('div.location-header h2').innerText = location.name || ' ';
-    document.querySelector('div.location-header p').innerText = isLocationReady ? `${location.address.street}, ${location.address.postalCode} ${location.address.city}` : ' ';
-    document.querySelector('div.location-header a').href = location.dataUrl || '#';
+    document.querySelector('div.location-header h2').innerText = location.name;
+    document.querySelector('div.location-header p').innerText = `${location.address.street}, ${location.address.postalCode} ${location.address.city}`;
+    document.querySelector('div.location-header a').href = location.dataUrl;
 
 
     const indicators = document.querySelectorAll('div.blood-groups > div');
@@ -81,7 +78,6 @@ const subscribeToPushNotifications = async () => {
 }
 
 document.addEventListener("DOMContentLoaded", async (event) => {
-    renderLocationInfo(LOCATION_PLACEHOLDER);
     const selectedLocation = localStorage.getItem(LOCAL_STORAGE_KEY_SELECTED_LOCATION) || DEFAULT_LOCATION;
     
     const data = await fetchData();
