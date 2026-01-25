@@ -23,17 +23,105 @@
   <link rel="preload" fetchpriority="high" href="assets/images/BloodBag.webp" as="image" type="image/webp" />
   <link rel="preload" fetchpriority="high" href="assets/images/BloodBagFiller.webp" as="image" type="image/webp" />
 
-  <!-- Defer CSS to eliminate render-blocking resources -->
-  <link rel="stylesheet" href="css/bootstrap.min.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="css/bootstrap.min.css"></noscript>
-  
-  <link rel="stylesheet" href="css/main.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="css/main.css"></noscript>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
   <main>
     <h1 class="text-center">Zalihe krvi u RH</h1>
+
+    <div class="location-selector">
+      <p><b>Podaci su ažurirani:</b> <span id="update-time"></span></p>
+
+      <form>
+        <div class="mb-3">
+          <select class="form-select" name="location" id="location-select" aria-label="Odaberi transfuzijski centar"></select>
+        </div>
+      </form>
+    </div>
+
+    <div class="location">
+      <div class="location-header">
+        <h2>&nbsp;</h2>
+        <p>&nbsp;</p>
+        <a href="#" target="blank">Otvori stranicu</a>
+      </div>
+
+      <div class="legend">
+        <div><span class='high-indicator'></span></div>
+        <div>Prevelike zalihe</div>
+        <div><span class='low-indicator'></span></div>
+        <div>Premale zalihe</div>
+      </div>
+
+      <div class="blood-groups">
+        <div>
+          <div class="blood-bag">   
+          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
+          <div class="high-indicator" style="bottom: 100%"></div>
+          <div class="low-indicator" style="bottom: 0%"></div>
+          <p class="blood-type"></p>
+          </div>
+        </div>
+        <div>
+          <div class="blood-bag">   
+          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
+          <div class="high-indicator" style="bottom: 100%"></div>
+          <div class="low-indicator" style="bottom: 0%"></div>
+          <p class="blood-type"></p>
+          </div>
+        </div>
+        <div>
+          <div class="blood-bag">   
+          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
+          <div class="high-indicator" style="bottom: 100%"></div>
+          <div class="low-indicator" style="bottom: 0%"></div>
+          <p class="blood-type"></p>
+          </div>
+        </div>
+        <div>
+          <div class="blood-bag">   
+          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
+          <div class="high-indicator" style="bottom: 100%"></div>
+          <div class="low-indicator" style="bottom: 0%"></div>
+          <p class="blood-type"></p>
+          </div>
+        </div>
+        <div>
+          <div class="blood-bag">   
+          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
+          <div class="high-indicator" style="bottom: 100%"></div>
+          <div class="low-indicator" style="bottom: 0%"></div>
+          <p class="blood-type"></p>
+          </div>
+        </div>
+        <div>
+          <div class="blood-bag">   
+          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
+          <div class="high-indicator" style="bottom: 100%"></div>
+          <div class="low-indicator" style="bottom: 0%"></div>
+          <p class="blood-type"></p>
+          </div>
+        </div>
+        <div>
+          <div class="blood-bag">   
+          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
+          <div class="high-indicator" style="bottom: 100%"></div>
+          <div class="low-indicator" style="bottom: 0%"></div>
+          <p class="blood-type"></p>
+          </div>
+        </div>
+        <div>
+          <div class="blood-bag">   
+          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
+          <div class="high-indicator" style="bottom: 100%"></div>
+          <div class="low-indicator" style="bottom: 0%"></div>
+          <p class="blood-type"></p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div>
       <div class="actions-container">
@@ -96,7 +184,7 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header d-flex justify-content-space-between">
-              <img width="32" height="32" src="assets/images/blood-drop-64.webp" alt="Alert image" />
+              <img width="32" height="32" src="assets/images/blood-drop-32.webp" loading="lazy" alt="Alert image" />
               <h1 class="modal-title fs-5 mx-3" id="alertModalTitle">Obavijesti me</h1>
             </div>
             <div class="modal-body">
@@ -146,97 +234,6 @@
       </div>
     </div>
 
-    <div class="location-selector">
-      <p><b>Podaci su ažurirani:</b> <span id="update-time"></span></p>
-
-      <form>
-        <div class="mb-3">
-          <select class="form-select" name="location" id="location-select" aria-label="Odaberi transfuzijski centar"></select>
-        </div>
-      </form>
-    </div>
-
-    <div class="location">
-      <div class="location-header">
-        <h2>&nbsp;</h2>
-        <p>&nbsp;</p>
-        <a href="" target="blank">Otvori stranicu</a>
-      </div>
-
-      <div class="legend">
-        <div><span class='high-indicator'></span></div>
-        <div>Prevelike zalihe</div>
-        <div><span class='low-indicator'></span></div>
-        <div>Premale zalihe</div>
-      </div>
-
-      <div class="blood-groups">
-        <div>
-          <div class="blood-bag">   
-          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
-          <div class="high-indicator" style="bottom: 0%"></div>
-          <div class="low-indicator" style="bottom: 0%"></div>
-          <p class="blood-type"></p>
-          </div>
-        </div>
-        <div>
-          <div class="blood-bag">   
-          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
-          <div class="high-indicator" style="bottom: 0%"></div>
-          <div class="low-indicator" style="bottom: 0%"></div>
-          <p class="blood-type"></p>
-          </div>
-        </div>
-        <div>
-          <div class="blood-bag">   
-          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
-          <div class="high-indicator" style="bottom: 0%"></div>
-          <div class="low-indicator" style="bottom: 0%"></div>
-          <p class="blood-type"></p>
-          </div>
-        </div>
-        <div>
-          <div class="blood-bag">   
-          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
-          <div class="high-indicator" style="bottom: 0%"></div>
-          <div class="low-indicator" style="bottom: 0%"></div>
-          <p class="blood-type"></p>
-          </div>
-        </div>
-        <div>
-          <div class="blood-bag">   
-          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
-          <div class="high-indicator" style="bottom: 0%"></div>
-          <div class="low-indicator" style="bottom: 0%"></div>
-          <p class="blood-type"></p>
-          </div>
-        </div>
-        <div>
-          <div class="blood-bag">   
-          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
-          <div class="high-indicator" style="bottom: 0%"></div>
-          <div class="low-indicator" style="bottom: 0%"></div>
-          <p class="blood-type"></p>
-          </div>
-        </div>
-        <div>
-          <div class="blood-bag">   
-          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
-          <div class="high-indicator" style="bottom: 0%"></div>
-          <div class="low-indicator" style="bottom: 0%"></div>
-          <p class="blood-type"></p>
-          </div>
-        </div>
-        <div>
-          <div class="blood-bag">   
-          <div class="blood-bag-filler" style="mask-image: linear-gradient(to top, black 0%, transparent 0%)"></div>
-          <div class="high-indicator" style="bottom: 0%"></div>
-          <div class="low-indicator" style="bottom: 0%"></div>
-          <p class="blood-type"></p>
-          </div>
-        </div>
-      </div>
-    </div>
   </main>
 
   <!-- Google tag (gtag.js) -->

@@ -1,5 +1,4 @@
 import { fetchData, humanReadableDate, transformPercentageToImageHeight } from "./utils.js"
-import LOCATION_PLACEHOLDER from "./location-placeholder.js"
 import { subscribe } from './subscribe.js'
 
 import { LOCAL_STORAGE_KEY_SELECTED_LOCATION, DEFAULT_LOCATION, FIREBASE_CONFIG } from "./config.js";
@@ -81,7 +80,6 @@ const subscribeToPushNotifications = async () => {
 }
 
 document.addEventListener("DOMContentLoaded", async (event) => {
-    renderLocationInfo(LOCATION_PLACEHOLDER);
     const selectedLocation = localStorage.getItem(LOCAL_STORAGE_KEY_SELECTED_LOCATION) || DEFAULT_LOCATION;
     
     const data = await fetchData();
