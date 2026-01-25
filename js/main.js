@@ -6,9 +6,11 @@ import { LOCAL_STORAGE_KEY_SELECTED_LOCATION, DEFAULT_LOCATION, FIREBASE_CONFIG 
 let updated, locations, selectedLocation;
 
 const renderLocationInfo = (location) => {
-    document.querySelector('div.location-header h2').innerText = location.name;
-    document.querySelector('div.location-header p').innerText = `${location.address.street}, ${location.address.postalCode} ${location.address.city}`;
-    document.querySelector('div.location-header a').href = location.dataUrl;
+    const isLocationReady = location.address.street || location.address.city || location.address.postalCode;
+    
+    document.querySelector('div.location-header h2').innerText = location.name || ' ';
+    document.querySelector('div.location-header p').innerText = isLocationReady ? `${location.address.street}, ${location.address.postalCode} ${location.address.city}` : ' ';
+    document.querySelector('div.location-header a').href = location.dataUrl || '#';
 
 
     const indicators = document.querySelectorAll('div.blood-groups > div');
