@@ -1,4 +1,4 @@
-import { fetchData, humanReadableDate, transformPercentageToImageHeight, sanitizeHTML, isValidAttributeValue } from "./utils.js"
+import { fetchData, humanReadableDate, transformPercentageToImageHeight, sanitizeHTML, isValidAttributeValue, isValidUrl } from "./utils.js"
 import { subscribe } from './subscribe.js'
 
 import { LOCAL_STORAGE_KEY_SELECTED_LOCATION, DEFAULT_LOCATION, FIREBASE_CONFIG } from "./config.js";
@@ -8,9 +8,16 @@ let updated, locations, selectedLocation;
 const renderLocationInfo = (location) => {
     const isLocationReady = location.address.street || location.address.city || location.address.postalCode;
     
-    document.querySelector('div.location-header h2').innerText = location.name || ' ';
-    document.querySelector('div.location-header p').innerText = isLocationReady ? `${location.address.street}, ${location.address.postalCode} ${location.address.city}` : ' ';
-    document.querySelector('div.location-header a').href = location.dataUrl || '#';
+    document.querySelector('div.location-header h2').textContent = location.name || ' ';
+    document.querySelector('div.location-header p').textContent = isLocationReady ? `${location.address.street}, ${location.address.postalCode} ${location.address.city}` : ' ';
+    
+    // Validate URL before setting href
+    const linkElement = document.querySelector('div.location-header a');
+    if (isValidUrl(location.dataUrl)) {
+        linkElement.href = location.dataUrl;
+    } else {
+        linkElement.href = '#';
+    }
 
 
     const indicators = document.querySelectorAll('div.blood-groups > div');
@@ -22,7 +29,7 @@ const renderLocationInfo = (location) => {
         indicator.querySelector('.blood-bag-filler').style.maskImage = `linear-gradient(to top, black ${transformPercentageToImageHeight(group.amountPercentage)}%, transparent 0%)`;
         indicator.querySelector('.high-indicator').style.bottom = `${transformPercentageToImageHeight(group.highPercentage)}%`;
         indicator.querySelector('.low-indicator').style.bottom = `${transformPercentageToImageHeight(group.lowPercentage)}%`;
-        indicator.querySelector('.blood-type').innerText = group.type;
+        indicator.querySelector('.blood-type').textContent = group.type;
     }
 }
 
@@ -103,18 +110,15 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     updateSelectedLocation({ target: { value: selectedLocation } }); // Preselect location
 
     const locationSelectElement = document.querySelector("#location-select");
-    locationSelectElement.innerHTML = locations
-        .filter(location => isValidAttributeValue(location.id)) // Filter out unsafe IDs
-        .map(location => `
-        <option value="${sanitizeHTML(location.id)}" ${location.id === selectedLocation ? 'selected' : ''}>${sanitizeHTML(location.name)}</option>
+    const validLocations = locations.filter(location => isValidAttributeValue(location.id));
+    locationSelectElement.innerHTML = validLocations.map(location => `
+        <option value="${location.id}" ${location.id === selectedLocation ? 'selected' : ''}>${sanitizeHTML(location.name)}</option>
     `).join('');
     locationSelectElement.addEventListener("change", updateSelectedLocation);
 
     document.querySelector('#subscribeGroup').innerHTML = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', '0+', '0-'].map((group) => `<option value="${group}">${group}</option>`).join('');
-    document.querySelector('#subscribeLocation').innerHTML = locations
-        .filter(location => isValidAttributeValue(location.id)) // Filter out unsafe IDs
-        .map(location => `
-        <option value="${sanitizeHTML(location.id)}" ${location.id === selectedLocation ? 'selected' : ''}>${sanitizeHTML(location.name)}</option>
+    document.querySelector('#subscribeLocation').innerHTML = validLocations.map(location => `
+        <option value="${location.id}" ${location.id === selectedLocation ? 'selected' : ''}>${sanitizeHTML(location.name)}</option>
     `).join('');
 
     document.querySelector('#subscribeButton').addEventListener("click", subscribeToPushNotifications);

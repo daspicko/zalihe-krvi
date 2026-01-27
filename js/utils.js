@@ -62,10 +62,24 @@ const isValidAttributeValue = (str) => {
   return /^[a-zA-Z0-9_-]+$/.test(str);
 }
 
+/**
+ * Validates that a URL is safe (uses http or https protocol)
+ */
+const isValidUrl = (url) => {
+  if (!url) return false;
+  try {
+    const urlObj = new URL(url);
+    return urlObj.protocol === 'http:' || urlObj.protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
+
 export {
   fetchData,
   humanReadableDate,
   transformPercentageToImageHeight,
   sanitizeHTML,
-  isValidAttributeValue
+  isValidAttributeValue,
+  isValidUrl
 };
