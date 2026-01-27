@@ -41,8 +41,19 @@ const transformPercentageToImageHeight = (percentage) => {
   return translatedPercentage + BLOOD_BAG_FILLER_IMAGE_LIMITS.bottom;
 }
 
+/**
+ * Sanitizes HTML to prevent XSS attacks
+ * Escapes special characters that could be used for script injection
+ */
+const sanitizeHTML = (str) => {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
 export {
   fetchData,
   humanReadableDate,
-  transformPercentageToImageHeight
+  transformPercentageToImageHeight,
+  sanitizeHTML
 };

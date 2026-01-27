@@ -1,5 +1,5 @@
-import { initializeApp} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js"
-import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-messaging.js"
+import { initializeApp} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js"
+import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging.js"
 
 import { FIREBASE_API_KEY, BE_HOST, BE_X_API_KEY, FIREBASE_CONFIG } from "./config.js";
 

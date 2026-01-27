@@ -1,4 +1,4 @@
-import { fetchData, humanReadableDate, transformPercentageToImageHeight } from "./utils.js"
+import { fetchData, humanReadableDate, transformPercentageToImageHeight, sanitizeHTML } from "./utils.js"
 import { subscribe } from './subscribe.js'
 
 import { LOCAL_STORAGE_KEY_SELECTED_LOCATION, DEFAULT_LOCATION, FIREBASE_CONFIG } from "./config.js";
@@ -28,9 +28,16 @@ const renderLocationInfo = (location) => {
 
 const updateSelectedLocation = (e) => {
     selectedLocation = e.target.value;
+    
+    // Validate that the selected location exists in the locations array
+    const location = locations.find(location => location.id === selectedLocation);
+    if (!location) {
+        console.error('Invalid location selected:', selectedLocation);
+        return;
+    }
+    
     localStorage.setItem(LOCAL_STORAGE_KEY_SELECTED_LOCATION, selectedLocation);
-
-    renderLocationInfo(locations.find(location => location.id === selectedLocation));
+    renderLocationInfo(location);
 }
 
 const subscribeToPushNotifications = async () => {
@@ -65,14 +72,14 @@ const subscribeToPushNotifications = async () => {
     if (result?.success) {
         document.querySelector('.alert-container').innerHTML += `
             <div class="alert alert-success" role="alert">
-                Prijavili ste se za obavijest o darivanju krvne grupe <b>${subscribeGroup}</b> kada se zaliha smanji u <b>${location.name}</b>.
+                Prijavili ste se za obavijest o darivanju krvne grupe <b>${sanitizeHTML(subscribeGroup)}</b> kada se zaliha smanji u <b>${sanitizeHTML(location.name)}</b>.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         `;
     } else {
         document.querySelector('.alert-container').innerHTML += `
             <div class="alert alert-danger" role="alert">
-                ${result?.message || 'Došlo je do pogreške prilikom prijave na obavijesti. Pokušajte ponovno.'}
+                ${sanitizeHTML(result?.message || 'Došlo je do pogreške prilikom prijave na obavijesti. Pokušajte ponovno.')}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         `;
@@ -86,18 +93,18 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     updated = data?.updated;
     locations = data?.locations;
 
-    document.querySelector('#update-time').innerHTML = `${humanReadableDate(updated || Date.parse(new Date().toLocaleDateString()) )}`;
+    document.querySelector('#update-time').textContent = `${humanReadableDate(updated || Date.parse(new Date().toLocaleDateString()) )}`;
     updateSelectedLocation({ target: { value: selectedLocation } }); // Preselect location
 
     const locationSelectElement = document.querySelector("#location-select");
     locationSelectElement.innerHTML = locations.map(location => `
-        <option value="${location.id}" ${location.id === selectedLocation ? 'selected' : ''}>${location.name}</option>
+        <option value="${sanitizeHTML(location.id)}" ${location.id === selectedLocation ? 'selected' : ''}>${sanitizeHTML(location.name)}</option>
     `).join('');
     locationSelectElement.addEventListener("change", updateSelectedLocation);
 
     document.querySelector('#subscribeGroup').innerHTML = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', '0+', '0-'].map((group) => `<option value="${group}">${group}</option>`).join('');
     document.querySelector('#subscribeLocation').innerHTML = locations.map(location => `
-        <option value="${location.id}" ${location.id === selectedLocation ? 'selected' : ''}>${location.name}</option>
+        <option value="${sanitizeHTML(location.id)}" ${location.id === selectedLocation ? 'selected' : ''}>${sanitizeHTML(location.name)}</option>
     `).join('');
 
     document.querySelector('#subscribeButton').addEventListener("click", subscribeToPushNotifications);
@@ -115,8 +122,8 @@ window.addEventListener("scroll", () => {
 });
 
 Promise.all([
-    import('https://www.gstatic.com/firebasejs/9.2.0/firebase-app-compat.js'), 
-    import('https://www.gstatic.com/firebasejs/9.2.0/firebase-messaging-compat.js')
+    import('https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js'), 
+    import('https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging-compat.js')
 ]).then(() => {
     const app = firebase.initializeApp(FIREBASE_CONFIG);
     const messaging = firebase.messaging(app);
@@ -126,8 +133,8 @@ Promise.all([
 
     messaging.onMessage((payload) => {
         const { title, body } = payload.notification;
-        alertTitleElement.innerText = title;
-        alertTextElement.innerHTML = body;
+        alertTitleElement.textContent = title;
+        alertTextElement.textContent = body;
         bootstrap.Modal.getOrCreateInstance(document.querySelector('#alertModal')).show();
     });
 })
