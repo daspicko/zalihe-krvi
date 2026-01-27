@@ -32,5 +32,6 @@ npm install
 npm run rollup
 
 cp -r js/libs dist/js/libs/
+cp js/analytics.js dist/js/
 
 echo "Build completed successfully."

@@ -1,4 +1,4 @@
-import { fetchData, humanReadableDate, transformPercentageToImageHeight, sanitizeHTML } from "./utils.js"
+import { fetchData, humanReadableDate, transformPercentageToImageHeight, sanitizeHTML, isValidAttributeValue } from "./utils.js"
 import { subscribe } from './subscribe.js'
 
 import { LOCAL_STORAGE_KEY_SELECTED_LOCATION, DEFAULT_LOCATION, FIREBASE_CONFIG } from "./config.js";
@@ -33,6 +33,12 @@ const updateSelectedLocation = (e) => {
     const location = locations.find(location => location.id === selectedLocation);
     if (!location) {
         console.error('Invalid location selected:', selectedLocation);
+        // Fallback to default location
+        selectedLocation = DEFAULT_LOCATION;
+        const defaultLocation = locations.find(location => location.id === DEFAULT_LOCATION);
+        if (defaultLocation) {
+            renderLocationInfo(defaultLocation);
+        }
         return;
     }
     
@@ -97,13 +103,17 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     updateSelectedLocation({ target: { value: selectedLocation } }); // Preselect location
 
     const locationSelectElement = document.querySelector("#location-select");
-    locationSelectElement.innerHTML = locations.map(location => `
+    locationSelectElement.innerHTML = locations
+        .filter(location => isValidAttributeValue(location.id)) // Filter out unsafe IDs
+        .map(location => `
         <option value="${sanitizeHTML(location.id)}" ${location.id === selectedLocation ? 'selected' : ''}>${sanitizeHTML(location.name)}</option>
     `).join('');
     locationSelectElement.addEventListener("change", updateSelectedLocation);
 
     document.querySelector('#subscribeGroup').innerHTML = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', '0+', '0-'].map((group) => `<option value="${group}">${group}</option>`).join('');
-    document.querySelector('#subscribeLocation').innerHTML = locations.map(location => `
+    document.querySelector('#subscribeLocation').innerHTML = locations
+        .filter(location => isValidAttributeValue(location.id)) // Filter out unsafe IDs
+        .map(location => `
         <option value="${sanitizeHTML(location.id)}" ${location.id === selectedLocation ? 'selected' : ''}>${sanitizeHTML(location.name)}</option>
     `).join('');
 

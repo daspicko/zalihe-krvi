@@ -46,14 +46,26 @@ const transformPercentageToImageHeight = (percentage) => {
  * Escapes special characters that could be used for script injection
  */
 const sanitizeHTML = (str) => {
+  if (str === null || str === undefined) {
+    return '';
+  }
   const div = document.createElement('div');
-  div.textContent = str;
+  div.textContent = String(str);
   return div.innerHTML;
+}
+
+/**
+ * Validates that a string is safe to use as an HTML attribute value
+ * Only allows alphanumeric characters, hyphens, and underscores
+ */
+const isValidAttributeValue = (str) => {
+  return /^[a-zA-Z0-9_-]+$/.test(str);
 }
 
 export {
   fetchData,
   humanReadableDate,
   transformPercentageToImageHeight,
-  sanitizeHTML
+  sanitizeHTML,
+  isValidAttributeValue
 };
