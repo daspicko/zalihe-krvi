@@ -1,3 +1,8 @@
+./quality.sh || {
+    echo "Quality checks failed. Build aborted."
+    exit 1
+}
+
 if [[ -d dist ]]; then
     echo "Removing old build..."
     rm -rf dist
