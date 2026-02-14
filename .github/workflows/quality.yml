@@ -1,0 +1,38 @@
+name: Quality Checks
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v6
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: 24
+        cache: 'npm'
+    
+    - name: Install root dependencies
+      run: npm ci
+    
+    - name: Install scraper dependencies
+      run: cd scraper && npm ci
+    
+    - name: Install notifier dependencies
+      run: cd notifier && npm ci
+    
+    - name: Run ESLint
+      run: npm run lint
+    
+    - name: Run scraper tests
+      run: cd scraper && npm test
+    
+    - name: Run notifier tests
+      run: cd notifier && npm test

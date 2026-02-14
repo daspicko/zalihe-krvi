@@ -5,7 +5,11 @@
   "main": "./js/main.js",
   "type": "module",
   "scripts": {
-    "rollup": "./node_modules/rollup/dist/bin/rollup -c rollup.config.js"
+    "rollup": "./node_modules/rollup/dist/bin/rollup -c rollup.config.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "npm run test --prefix scraper && npm run test --prefix notifier",
+    "quality": "npm run lint && npm test"
   },
   "repository": {
     "type": "git",
@@ -15,6 +19,11 @@
   "license": "ISC",
   "homepage": "https://zalihe-krvi.apprepo.eu/",
   "devDependencies": {
+    "@eslint/css": "^0.14.1",
+    "@eslint/json": "^0.14.0",
+    "@eslint/markdown": "^7.5.1",
+    "eslint": "^9.39.2",
+    "globals": "^17.3.0",
     "rollup": "^4.57.1",
     "rollup-plugin-esbuild-minify": "^1.3.0"
   }

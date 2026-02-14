@@ -21,6 +21,8 @@ const subscribe = async (location, bloodType) => {
             const response = await fetch(`${BE_HOST}/subscribe`, {
                 method: 'POST',
                 headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
                     'x-api-key': BE_X_API_KEY,
                 },
                 body: JSON.stringify({

@@ -1,6 +1,6 @@
-# Zalihe krvi u Republici Hrvatskoj - Scrapper
+# Zalihe krvi u Republici Hrvatskoj - Scraper
 
-Scrapper je jednostavna Node applikacija za dohvaćanje vrijednosti krvi sa izvora. Razlog ne korištenja
+Scraper je jednostavna Node applikacija za dohvaćanje vrijednosti krvi sa izvora. Razlog ne korištenja
 - [Scrapy](https://www.scrapy.org/)
 - [crawlee](https://crawlee.dev/)
 

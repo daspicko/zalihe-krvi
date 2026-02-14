@@ -14,7 +14,7 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
 
       - name: Configure environment
         run: |
@@ -25,6 +25,6 @@ jobs:
       - name: Notify donors
         run: |
           cd notifier
-          npm install
+          npm ci
           node index.js
           cd ..

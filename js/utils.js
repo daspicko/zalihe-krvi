@@ -1,14 +1,21 @@
 const fetchData = async () => {
-    const response = await fetch('data.json');
+    try {
+        const response = await fetch('data.json');
 
-    if (response.ok) {
-        try {
-            return await response.json();
-        } catch (error) {
-            console.error('Error parsing JSON:', error);
+        if (response.ok) {
+            try {
+                return await response.json();
+            } catch (error) {
+                console.error('Error parsing JSON:', error);
+                return null;
+            }
+        } else {
+            console.error('Error fetching data from server!', response.status);
+            return null;
         }
-    } else {
-        console.error('Error fetching data from server!', response.status);
+    } catch (error) {
+        console.error('Network error fetching data:', error);
+        return null;
     }
 }
 

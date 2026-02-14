@@ -85,55 +85,59 @@ body {
     gap: 2rem;
     justify-content: start;
     padding-bottom: 1rem;
+}
 
-    .high-indicator {
-        margin-top: 0.6rem;
-    }
+.legend .high-indicator {
+    margin-top: 0.6rem;
+}
 
-    .low-indicator {
-        margin-top: 0.6rem;
-    }
+.legend .low-indicator {
+    margin-top: 0.6rem;
+}
 
-    div {
-        margin-left: 0.25rem;
-    }
+.legend div {
+    margin-left: 0.25rem;
 }
 
 .actions-container {
     position: absolute;
     right: 0;
-
-    @media (max-width: 767px) {
-        bottom: 0.5rem;
-    }
-    @media (min-width: 768px) {
-        top: 0.5rem;
-    }
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 0.25rem;
 }
 
+@media (max-width: 767px) {
+    .actions-container {
+        bottom: 0.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .actions-container {
+        top: 0.5rem;
+    }
+}
+
 .action-button {
     width: 4rem;
     height: 4rem;
     border-radius: 0 !important;
-
-    svg {
-        color: #fff;
-        scale: 2;
-    }
-
-    svg.bi-bell {
-        color: #fff;
-        animation: swing 2s infinite ease-in-out;
-    }
 }
 
-.actions-container.top {
-    @media (max-width: 767px) {
+.action-button svg {
+    color: #fff;
+    scale: 2;
+}
+
+.action-button svg.bi-bell {
+    color: #fff;
+    animation: swing 2s infinite ease-in-out;
+}
+
+@media (max-width: 767px) {
+    .actions-container.top {
         position: fixed;
         top: 0.5rem;
         bottom: unset;
@@ -141,11 +145,11 @@ body {
 }
 
 @keyframes swing {
-  0%   { transform: rotate(0deg); }
-  25%  { transform: rotate(-15deg); }
-  50%  { transform: rotate(15deg); }
-  75%  { transform: rotate(-15deg); }
-  100% { transform: rotate(0deg); }
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(-15deg); }
+    50%  { transform: rotate(15deg); }
+    75%  { transform: rotate(-15deg); }
+    100% { transform: rotate(0deg); }
 }
 
 .alert-container {
