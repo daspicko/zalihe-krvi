@@ -227,7 +227,7 @@ Promise.all([
     const alertTitleElement = document.querySelector('#alertModalTitle');
     const alertTextElement = document.querySelector('#alertModalText');
 
-    messaging.onMessage(messaging, (payload) => {
+    messaging.onMessage((payload) => {
         const { title, body } = payload.notification;
         // Safe: Use textContent to prevent XSS from push notification payload
         alertTitleElement.textContent = title || '';
