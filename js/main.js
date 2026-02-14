@@ -5,6 +5,61 @@ import { LOCAL_STORAGE_KEY_SELECTED_LOCATION, DEFAULT_LOCATION, FIREBASE_CONFIG 
 
 let updated, locations, selectedLocation;
 
+// Safe helper to create alert messages without XSS vulnerabilities
+const createAlert = (type, message, isDismissible = true) => {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type}${isDismissible ? ' alert-dismissible' : ''}`;
+    alertDiv.setAttribute('role', 'alert');
+    
+    // Use textContent to safely set message (prevents XSS)
+    const messageNode = document.createTextNode(message);
+    alertDiv.appendChild(messageNode);
+    
+    if (isDismissible) {
+        const closeButton = document.createElement('button');
+        closeButton.type = 'button';
+        closeButton.className = 'btn-close';
+        closeButton.setAttribute('data-bs-dismiss', 'alert');
+        closeButton.setAttribute('aria-label', 'Close');
+        alertDiv.appendChild(closeButton);
+    }
+    
+    return alertDiv;
+};
+
+// Safe helper for alerts with formatted content (bold text, etc.)
+const createFormattedAlert = (type, parts, isDismissible = true) => {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type}${isDismissible ? ' alert-dismissible' : ''}`;
+    alertDiv.setAttribute('role', 'alert');
+    
+    // Build content safely using DOM methods
+    parts.forEach(part => {
+        if (part.bold) {
+            const b = document.createElement('b');
+            b.textContent = part.text;
+            alertDiv.appendChild(b);
+        } else if (part.strong) {
+            const strong = document.createElement('strong');
+            strong.textContent = part.text;
+            alertDiv.appendChild(strong);
+        } else {
+            alertDiv.appendChild(document.createTextNode(part.text));
+        }
+    });
+    
+    if (isDismissible) {
+        const closeButton = document.createElement('button');
+        closeButton.type = 'button';
+        closeButton.className = 'btn-close';
+        closeButton.setAttribute('data-bs-dismiss', 'alert');
+        closeButton.setAttribute('aria-label', 'Close');
+        alertDiv.appendChild(closeButton);
+    }
+    
+    return alertDiv;
+};
+
 const renderLocationInfo = (location) => {
     const isLocationReady = location.address.street || location.address.city || location.address.postalCode;
     
@@ -69,12 +124,8 @@ const subscribeToPushNotifications = async () => {
         subscribeButtonElement.disabled = false;
         subscribeLoadingElement.style.display = 'none';
         
-        document.querySelector('.alert-container').innerHTML += `
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                Podatci o lokacijama nisu dostupni. Molimo osvježite stranicu.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        `;
+        const alert = createAlert('danger', 'Podatci o lokacijama nisu dostupni. Molimo osvježite stranicu.', true);
+        document.querySelector('.alert-container').appendChild(alert);
         return;
     }
 
@@ -87,12 +138,8 @@ const subscribeToPushNotifications = async () => {
         subscribeButtonElement.disabled = false;
         subscribeLoadingElement.style.display = 'none';
         
-        document.querySelector('.alert-container').innerHTML += `
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                Odabrana lokacija nije pronađena. Molimo pokušajte ponovno.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        `;
+        const alert = createAlert('danger', 'Odabrana lokacija nije pronađena. Molimo pokušajte ponovno.', true);
+        document.querySelector('.alert-container').appendChild(alert);
         return;
     }
     
@@ -106,19 +153,20 @@ const subscribeToPushNotifications = async () => {
     subscribeLoadingElement.style.display = 'none';
     
     if (result?.success) {
-        document.querySelector('.alert-container').innerHTML += `
-            <div class="alert alert-success alert-dismissible" role="alert">
-                Prijavili ste se za obavijest o darivanju krvne grupe <b>${subscribeGroup}</b> kada se zaliha smanji u <b>${location.name}</b>.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        `;
+        // Safe: Use formatted alert with textContent for user data
+        const alert = createFormattedAlert('success', [
+            { text: 'Prijavili ste se za obavijest o darivanju krvne grupe ' },
+            { text: subscribeGroup, bold: true },
+            { text: ' kada se zaliha smanji u ' },
+            { text: location.name, bold: true },
+            { text: '.' }
+        ], true);
+        document.querySelector('.alert-container').appendChild(alert);
     } else {
-        document.querySelector('.alert-container').innerHTML += `
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                ${result?.message || 'Došlo je do pogreške prilikom prijave na obavijesti. Pokušajte ponovno.'}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        `;
+        // Safe: Use textContent for API error message (untrusted)
+        const errorMessage = result?.message || 'Došlo je do pogreške prilikom prijave na obavijesti. Pokušajte ponovno.';
+        const alert = createAlert('danger', errorMessage, true);
+        document.querySelector('.alert-container').appendChild(alert);
     }
 }
 
@@ -130,11 +178,11 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     // Guard against failed data loading
     if (!data || !data.locations || !Array.isArray(data.locations) || data.locations.length === 0) {
         console.error('Failed to load blood bank data');
-        document.querySelector('.alert-container').innerHTML = `
-            <div class="alert alert-danger" role="alert">
-                <strong>Greška!</strong> Nije moguće učitati podatke o zalihama krvi. Molimo osvježite stranicu ili pokušajte kasnije.
-            </div>
-        `;
+        const alert = createFormattedAlert('danger', [
+            { text: 'Greška! ', strong: true },
+            { text: 'Nije moguće učitati podatke o zalihama krvi. Molimo osvježite stranicu ili pokušajte kasnije.' }
+        ], false);
+        document.querySelector('.alert-container').appendChild(alert);
         return; // Stop execution if data is invalid
     }
     
@@ -184,8 +232,9 @@ Promise.all([
 
     onMessage(messaging, (payload) => {
         const { title, body } = payload.notification;
-        alertTitleElement.innerText = title;
-        alertTextElement.innerHTML = body;
+        // Safe: Use textContent to prevent XSS from push notification payload
+        alertTitleElement.textContent = title || '';
+        alertTextElement.textContent = body || '';
         bootstrap.Modal.getOrCreateInstance(document.querySelector('#alertModal')).show();
     });
 })
