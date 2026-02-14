@@ -12,8 +12,8 @@ const subscribe = async (location, bloodType) => {
     const messaging = getMessaging(app);
 
     if ('serviceWorker' in navigator) {
-        const serviceWorkerRegistration = await navigator.serviceWorker.register(`${window.location.pathname}firebase-messaging-sw.js`, {
-            scope: `${window.location.pathname}`
+        const serviceWorkerRegistration = await navigator.serviceWorker.register('/firebase-messaging-sw.js', {
+            scope: '/'
         });
 
         const token = await getToken(messaging, {vapidKey: FIREBASE_API_KEY, serviceWorkerRegistration});

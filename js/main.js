@@ -30,7 +30,17 @@ const updateSelectedLocation = (e) => {
     selectedLocation = e.target.value;
     localStorage.setItem(LOCAL_STORAGE_KEY_SELECTED_LOCATION, selectedLocation);
 
-    renderLocationInfo(locations.find(location => location.id === selectedLocation));
+    if (!locations || !Array.isArray(locations)) {
+        console.error('Locations data not available');
+        return;
+    }
+    
+    const location = locations.find(location => location.id === selectedLocation);
+    if (location) {
+        renderLocationInfo(location);
+    } else {
+        console.error('Location not found:', selectedLocation);
+    }
 }
 
 const subscribeToPushNotifications = async () => {
@@ -52,7 +62,40 @@ const subscribeToPushNotifications = async () => {
     subscribeButtonElement.disabled = true;
     subscribeLoadingElement.style.display = 'inline-block';
 
+    if (!locations || !Array.isArray(locations)) {
+        console.error('Locations data not available for subscription');
+        subscribeGroupElement.disabled = false;
+        subscribeLocationElement.disabled = false;
+        subscribeButtonElement.disabled = false;
+        subscribeLoadingElement.style.display = 'none';
+        
+        document.querySelector('.alert-container').innerHTML += `
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                Podatci o lokacijama nisu dostupni. Molimo osvježite stranicu.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        `;
+        return;
+    }
+
     const location = locations.find(location => location.id === subscribeLocation);
+    
+    if (!location) {
+        console.error('Selected location not found:', subscribeLocation);
+        subscribeGroupElement.disabled = false;
+        subscribeLocationElement.disabled = false;
+        subscribeButtonElement.disabled = false;
+        subscribeLoadingElement.style.display = 'none';
+        
+        document.querySelector('.alert-container').innerHTML += `
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                Odabrana lokacija nije pronađena. Molimo pokušajte ponovno.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        `;
+        return;
+    }
+    
     const result = await subscribe(location, subscribeGroup);
     
     bootstrap.Modal.getInstance(document.querySelector('#subscribeModal')).hide();
@@ -83,8 +126,20 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     const selectedLocation = localStorage.getItem(LOCAL_STORAGE_KEY_SELECTED_LOCATION) || DEFAULT_LOCATION;
     
     const data = await fetchData();
-    updated = data?.updated;
-    locations = data?.locations;
+    
+    // Guard against failed data loading
+    if (!data || !data.locations || !Array.isArray(data.locations) || data.locations.length === 0) {
+        console.error('Failed to load blood bank data');
+        document.querySelector('.alert-container').innerHTML = `
+            <div class="alert alert-danger" role="alert">
+                <strong>Greška!</strong> Nije moguće učitati podatke o zalihama krvi. Molimo osvježite stranicu ili pokušajte kasnije.
+            </div>
+        `;
+        return; // Stop execution if data is invalid
+    }
+    
+    updated = data.updated;
+    locations = data.locations;
 
     document.querySelector('#update-time').innerHTML = `${humanReadableDate(updated || Date.parse(new Date().toLocaleDateString()) )}`;
     updateSelectedLocation({ target: { value: selectedLocation } }); // Preselect location
