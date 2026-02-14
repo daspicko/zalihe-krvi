@@ -73,7 +73,7 @@ document = await retrieveDocument(location.dataUrl);
 // Config is defined in a script tag, so we need to extract it
 groupsConfigCode = document.querySelector('div.custom_js script') 
     .innerText.split('function calculateHeight')[0]
-    .replaceAll('document.getElementById', '')
+    .replaceAll(/document\.getElementById\([^)]+\)/g, '""')  // Remove getElementById calls
     .replace('O+', '0+').replace('O-', '0-')
     .replace('const groups = ', 'return');
 groupsConfig = extractBloodGroupConfig(groupsConfigCode);
@@ -100,7 +100,7 @@ document = await retrieveDocument(location.dataUrl);
 // Config is defined in a script tag, so we need to extract it
 groupsConfigCode = document.innerText.split('const groups =')[1]
     .split('const empty = 25;')[0]
-    .replaceAll('document.getElementById', '')
+    .replaceAll(/document\.getElementById\([^)]+\)/g, '""')  // Remove getElementById calls
     .replace('O+', '0+').replace('O-', '0-');
 groupsConfig = extractBloodGroupConfig(groupsConfigCode);
 
@@ -126,4 +126,4 @@ fs.writeFileSync(`../data.json`, JSON.stringify({
     updated: Date.now(),
     locations: locations
 }), 'utf-8');
-console.log(`Data successfully scraped and saved to public/data.json`);
+console.log(`Data successfully scraped and saved to data.json`);

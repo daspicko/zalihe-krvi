@@ -66,8 +66,8 @@ const extractBloodGroupConfig = (jsCode) => {
         // Clean the code string to extract just the object literal
         let objectLiteral = jsCode.trim();
         
-        // Remove 'return' statement if present
-        objectLiteral = objectLiteral.replace(/^\s*return\s+/, '');
+        // Remove 'return' statement if present (with or without space before the brace)
+        objectLiteral = objectLiteral.replace(/^\s*return\s*/, '');
         
         // Remove any trailing semicolons
         objectLiteral = objectLiteral.replace(/;\s*$/, '');

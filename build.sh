@@ -1,22 +1,19 @@
+npm ci
+cd scraper && npm ci && cd ..
+
 ./quality.sh || {
     echo "Quality checks failed. Build aborted."
     exit 1
 }
 
 if [[ -d dist ]]; then
-    echo "Removing old build..."
     rm -rf dist
 fi
 
 mkdir dist
 
 if [[ ! -f data.json ]]; then
-    cd scraper 
-    echo "Installing scraper dependencies..."
-    npm ci
-    echo "Running scraper..."
-    node index.js
-    cd ..
+    cd scraper && node index.js && cd ..
 fi
 
 if [[ ! -f data.json ]]; then
@@ -33,7 +30,6 @@ cp manifest.json dist/
 cp -r css/ dist/
 cp -r assets/ dist/
 
-npm ci
 npm run rollup # Build with rollup and apply hashes to filenames
 
 cp -r js/libs dist/js/libs/ # Run after rollup to avoid overwriting
