@@ -4,6 +4,7 @@ import locations from './locations.js'
 
 import { retrieveText, retrieveDocument, parseStatistics } from './utils/fetchUtils.js'
 import { getDateForFileName } from './utils/dateUtils.js'
+import { extractBloodGroupConfig } from './utils/safeParser.js'
 
 // Opća Bolnica Varaždin
 let location = locations.find(location => location.name === 'Opća Bolnica Varaždin');
@@ -50,7 +51,7 @@ let groupsConfigCode = (await retrieveText('https://www.kbco.hr/wp-content/theme
     .split('function startRender()')[0]
     .replaceAll('minus', '-').replaceAll('plus', '+').replaceAll('O', '0')
     .replace('var bloodLevels =', 'return');
-let groupsConfig = new Function('return' + groupsConfigCode)(); // exec script sring
+let groupsConfig = extractBloodGroupConfig(groupsConfigCode);
 let currentStatistics = await parseStatistics(`https://www.kbco.hr/wp-content/krvstats/${getDateForFileName()}.html`);
 document.querySelectorAll('div#supplies div.measure').forEach(groupDiv => {
     const type = groupDiv.querySelector('div.name').textContent.trim();
@@ -75,7 +76,7 @@ groupsConfigCode = document.querySelector('div.custom_js script')
     .replaceAll('document.getElementById', '')
     .replace('O+', '0+').replace('O-', '0-')
     .replace('const groups = ', 'return');
-groupsConfig = new Function(groupsConfigCode)(); // exec script sring
+groupsConfig = extractBloodGroupConfig(groupsConfigCode);
 currentStatistics = await parseStatistics('https://www.bolnica-zadar.hr/doze/blood_data.html');
 document.querySelectorAll('div.eprueta').forEach(groupDiv => {
     const item = groupDiv.querySelector('div.eprueta-blood.animate-blood');
@@ -103,7 +104,7 @@ groupsConfigCode = document.innerText.split('const groups =')[1]
     .split('const empty = 25;')[0]
     .replaceAll('document.getElementById', '')
     .replace('O+', '0+').replace('O-', '0-');
-groupsConfig = new Function('return' + groupsConfigCode)(); // exec script sring
+groupsConfig = extractBloodGroupConfig(groupsConfigCode);
 
 currentStatistics = await parseStatistics('https://hztm.hr/doze/blood_data.html');
 document.querySelectorAll('div.eprueta').forEach(groupDiv => {
