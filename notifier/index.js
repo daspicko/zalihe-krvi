@@ -6,6 +6,8 @@ const sendNotification = async (locationId, bloodType) => {
     return await fetch(`${process.env.BE_HOST}/send`, {
         method: 'POST',
         headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
             'x-api-key': process.env.BE_X_API_KEY
         },
         body: JSON.stringify({

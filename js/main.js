@@ -171,7 +171,7 @@ const subscribeToPushNotifications = async () => {
 }
 
 document.addEventListener("DOMContentLoaded", async (event) => {
-    const selectedLocation = localStorage.getItem(LOCAL_STORAGE_KEY_SELECTED_LOCATION) || DEFAULT_LOCATION;
+    selectedLocation = localStorage.getItem(LOCAL_STORAGE_KEY_SELECTED_LOCATION) || DEFAULT_LOCATION;
     
     const data = await fetchData();
     
