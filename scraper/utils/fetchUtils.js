@@ -16,8 +16,7 @@ const retrieveDocument = async (url) => {
     return parse(text, 'text/html');
 }
 
-const parseStatistics = async (url) => {
-    const tableDataText = await retrieveText(url);
+const parseStatisticsText = (tableDataText) => {
     const data = [];
     const rows = tableDataText.trim().split('\n');
 
@@ -30,11 +29,17 @@ const parseStatistics = async (url) => {
             });
         }
     });
-    return data;       
+    return data;
+}
+
+const parseStatistics = async (url) => {
+    const tableDataText = await retrieveText(url);
+    return parseStatisticsText(tableDataText);
 }
 
 export {
     retrieveText,
     retrieveDocument,
-    parseStatistics
+    parseStatistics,
+    parseStatisticsText
 }
