@@ -6,10 +6,10 @@ fi
 mkdir dist
 
 if [[ ! -f data.json ]]; then
-    cd scrapper 
-    echo "Installing scrapper dependencies..."
-    npm install
-    echo "Running scrapper..."
+    cd scraper 
+    echo "Installing scraper dependencies..."
+    npm ci
+    echo "Running scraper..."
     node index.js
     cd ..
 fi
@@ -28,9 +28,9 @@ cp manifest.json dist/
 cp -r css/ dist/
 cp -r assets/ dist/
 
-npm install
-npm run rollup
+npm ci
+npm run rollup # Build with rollup and apply hashes to filenames
 
-cp -r js/libs dist/js/libs/
+cp -r js/libs dist/js/libs/ # Run after rollup to avoid overwriting
 
 echo "Build completed successfully."

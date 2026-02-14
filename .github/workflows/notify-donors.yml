@@ -25,6 +25,6 @@ jobs:
       - name: Notify donors
         run: |
           cd notifier
-          npm install
+          npm ci
           node index.js
           cd ..
