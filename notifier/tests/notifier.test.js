@@ -110,9 +110,10 @@ describe('notifier logic', () => {
             const requiredEnvVars = ['BE_HOST', 'BE_X_API_KEY', 'FE_HOST'];
             
             requiredEnvVars.forEach(envVar => {
+                const value = process.env[envVar];
                 assert.ok(
-                    typeof envVar === 'string',
-                    `${envVar} should be defined as environment variable`
+                    typeof value === 'string' && value.trim().length > 0,
+                    `${envVar} should be defined as a non-empty environment variable`
                 );
             });
         });
