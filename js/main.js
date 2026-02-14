@@ -218,19 +218,16 @@ window.addEventListener("scroll", () => {
 });
 
 Promise.all([
-    import('https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js'), 
-    import('https://www.gstatic.com/firebasejs/12.2.1/firebase-messaging.js')
-]).then((modules) => {
-    const { initializeApp } = modules[0];
-    const { getMessaging, onMessage } = modules[1];
-    
-    const app = initializeApp(FIREBASE_CONFIG);
-    const messaging = getMessaging(app);
+    import('https://www.gstatic.com/firebasejs/9.2.0/firebase-app-compat.js'), 
+    import('https://www.gstatic.com/firebasejs/9.2.0/firebase-messaging-compat.js')
+]).then(() => {
+    const app = firebase.initializeApp(FIREBASE_CONFIG);
+    const messaging = firebase.messaging(app);
 
     const alertTitleElement = document.querySelector('#alertModalTitle');
     const alertTextElement = document.querySelector('#alertModalText');
 
-    onMessage(messaging, (payload) => {
+    messaging.onMessage(messaging, (payload) => {
         const { title, body } = payload.notification;
         // Safe: Use textContent to prevent XSS from push notification payload
         alertTitleElement.textContent = title || '';
