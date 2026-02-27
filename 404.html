@@ -1,61 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hr">
 <head>
     <meta charset="UTF-8">
     <title>404 Nije pronađeno</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        @font-face {
+            font-display: swap;
+            font-family: 'Roboto';
+            font-weight: 400;
+            src: url(assets/fonts/Roboto-Regular.ttf) format('truetype');
+        }
+        @font-face {
+            font-display: swap;
+            font-family: 'Roboto';
+            font-weight: 700;
+            src: url(assets/fonts/Roboto-Bold.ttf) format('truetype');
+        }
         body {
             margin: 0;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #ffffff;
-            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #FFF5F0 0%, #FFE0D6 100%);
+            font-family: 'Roboto', sans-serif;
+            color: #2D2D2D;
         }
         .container {
             text-align: center;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            padding: 3rem 2.5rem;
+            max-width: 400px;
+            margin: 1rem;
         }
         .icon {
-            font-size: 64px;
-            color: #ff0800;
-            margin-bottom: 24px;
+            margin-bottom: 1.5rem;
         }
         .btn {
             display: inline-block;
-            padding: 10px 24px;
-            background: #007bff;
+            padding: 0.625rem 1.5rem;
+            background: #E53935;
             color: #fff;
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
+            border-radius: 8px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
             cursor: pointer;
             text-decoration: none;
-            margin-top: 24px;
+            margin-top: 1.5rem;
+            transition: background 0.2s, transform 0.2s;
         }
         .btn:hover {
-            background: #0056b3;
+            background: #C62828;
+            transform: translateY(-1px);
+        }
+        .btn:active {
+            transform: translateY(0);
         }
         h1 {
-            margin: 0 0 8px 0;
-            font-size: 32px;
-            color: #333;
+            margin: 0 0 0.5rem;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #E53935;
         }
         p {
-            color: #666;
-            margin: 0 0 16px 0;
+            color: #6B6B6B;
+            margin: 0;
+            font-size: 1rem;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="icon">
-            <!-- SVG icon: Exclamation in circle -->
             <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="10" stroke="#d9534f" stroke-width="2"/>
-                <rect x="11" y="7" width="2" height="6" rx="1" fill="#d9534f"/>
-                <rect x="11" y="15" width="2" height="2" rx="1" fill="#d9534f"/>
+                <circle cx="12" cy="12" r="10" stroke="#E53935" stroke-width="2"/>
+                <rect x="11" y="7" width="2" height="6" rx="1" fill="#E53935"/>
+                <rect x="11" y="15" width="2" height="2" rx="1" fill="#E53935"/>
             </svg>
         </div>
         <h1>404</h1>

@@ -3,6 +3,8 @@
     "short_name": "Zalihe krvi",
     "start_url": "/",
     "display": "standalone",
+    "theme_color": "#E53935",
+    "background_color": "#FFF5F0",
     "icons": [
         {
             "src": "assets/images/blood-drop-192.webp",
