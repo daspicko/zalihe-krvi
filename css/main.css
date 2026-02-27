@@ -110,7 +110,7 @@ body {
 .header-right {
     flex-shrink: 0;
     width: 350px;
-    max-width: 65%;
+    max-width: 50%;
 }
 
 /* ===== Custom Dropdown ===== */
