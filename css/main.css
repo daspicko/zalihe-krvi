@@ -109,6 +109,8 @@ body {
 
 .header-right {
     flex-shrink: 0;
+    width: 350px;
+    max-width: 65%;
 }
 
 /* ===== Custom Dropdown ===== */
@@ -116,6 +118,10 @@ body {
     position: relative;
     display: inline-block;
     width: max-content;
+}
+
+.header-right .custom-dropdown {
+    width: 100%;
 }
 
 .dd-toggle.glass-select {
@@ -218,6 +224,7 @@ body {
 /* Modal dropdown: full width */
 .modal-dropdown {
     display: block;
+    width: 100%;
 }
 
 .modal-dropdown .dd-toggle.glass-select {

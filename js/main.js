@@ -286,7 +286,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     updated = data.updated;
     locations = data.locations;
 
-    document.querySelector('#update-time').textContent = `Ažurirano: ${humanReadableDate(updated || Date.parse(new Date().toLocaleDateString()) )}`;
+    document.querySelector('#update-time').textContent = `${humanReadableDate(updated || Date.parse(new Date().toLocaleDateString()) )}`;
     updateSelectedLocation(selectedLocation); // Preselect location
 
     // Initialize header location dropdown
