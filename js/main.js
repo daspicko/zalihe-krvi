@@ -1,4 +1,4 @@
-import { fetchData, humanReadableDate, transformPercentageToImageHeight } from "./utils.js"
+import { fetchData, humanReadableDate } from "./utils.js"
 import { subscribe } from './subscribe.js'
 
 import { LOCAL_STORAGE_KEY_SELECTED_LOCATION, DEFAULT_LOCATION, FIREBASE_CONFIG } from "./config.js";
@@ -63,21 +63,25 @@ const createFormattedAlert = (type, parts, isDismissible = true) => {
 const renderLocationInfo = (location) => {
     const isLocationReady = location.address.street || location.address.city || location.address.postalCode;
     
-    document.querySelector('div.location-header h2').innerText = location.name || ' ';
-    document.querySelector('div.location-header p').innerText = isLocationReady ? `${location.address.street}, ${location.address.postalCode} ${location.address.city}` : ' ';
-    document.querySelector('div.location-header a').href = location.dataUrl || '#';
+    document.querySelector('.location-header h2').innerText = location.name || ' ';
+    document.querySelector('.location-header p').innerText = isLocationReady ? `${location.address.street}, ${location.address.postalCode} ${location.address.city}` : ' ';
+    document.querySelector('.location-header a').href = location.dataUrl || '#';
 
-
-    const indicators = document.querySelectorAll('div.blood-groups > div');
+    const cards = document.querySelectorAll('.blood-grid > .blood-card');
 
     for (let i = 0; i < location.bloodGroups.length; i++) {
         const group = location.bloodGroups[i];
-        const indicator = indicators[i];
+        const card = cards[i];
 
-        indicator.querySelector('.blood-bag-filler').style.maskImage = `linear-gradient(to top, black ${transformPercentageToImageHeight(group.amountPercentage)}%, transparent 0%)`;
-        indicator.querySelector('.high-indicator').style.bottom = `${transformPercentageToImageHeight(group.highPercentage)}%`;
-        indicator.querySelector('.low-indicator').style.bottom = `${transformPercentageToImageHeight(group.lowPercentage)}%`;
-        indicator.querySelector('.blood-type').innerText = group.type;
+        const amount = Math.max(0, Math.min(100, group.amountPercentage || 0));
+        const high = Math.max(0, Math.min(100, group.highPercentage || 0));
+        const low = Math.max(0, Math.min(100, group.lowPercentage || 0));
+
+        card.querySelector('.bar-fill').style.height = `${amount}%`;
+        card.querySelector('.bar-high-marker').style.bottom = `${high}%`;
+        card.querySelector('.bar-low-marker').style.bottom = `${low}%`;
+        card.querySelector('.blood-type-label').innerText = group.type;
+        card.querySelector('.blood-percentage').innerText = `${amount}%`;
     }
 }
 
@@ -189,7 +193,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     updated = data.updated;
     locations = data.locations;
 
-    document.querySelector('#update-time').innerHTML = `${humanReadableDate(updated || Date.parse(new Date().toLocaleDateString()) )}`;
+    document.querySelector('#update-time').textContent = `Ažurirano: ${humanReadableDate(updated || Date.parse(new Date().toLocaleDateString()) )}`;
     updateSelectedLocation({ target: { value: selectedLocation } }); // Preselect location
 
     const locationSelectElement = document.querySelector("#location-select");
@@ -206,16 +210,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     document.querySelector('#subscribeButton').addEventListener("click", subscribeToPushNotifications);
 });
 
-window.addEventListener("scroll", () => {
-    const actionsContainer = document.querySelector(".actions-container");
-    if (window.scrollY > window.innerHeight - actionsContainer.clientHeight) {
-        // if user scrolled past 1 screen height → move to top
-        actionsContainer.classList.add("top");
-    } else {
-        // otherwise → keep bottom
-        actionsContainer.classList.remove("top");
-    }
-});
+
 
 Promise.all([
     import('https://www.gstatic.com/firebasejs/9.2.0/firebase-app-compat.js'), 
