@@ -37,7 +37,13 @@
       <span class="update-time" id="update-time"></span>
     </div>
     <div class="header-right">
-      <select class="glass-select" name="location" id="location-select" aria-label="Odaberi transfuzijski centar"></select>
+      <div class="custom-dropdown" id="location-select" role="listbox" aria-label="Odaberi transfuzijski centar">
+        <button class="dd-toggle glass-select" type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span class="dd-value">Odaberi lokaciju</span>
+          <svg class="dd-chevron" width="12" height="12" viewBox="0 0 12 12"><path fill="currentColor" d="M2 4l4 4 4-4"/></svg>
+        </button>
+        <ul class="dd-menu glass" role="listbox"></ul>
+      </div>
     </div>
   </header>
 
@@ -179,18 +185,36 @@
               <p>Budite obaviješteni kad količine krvi Vaše grupe imaju premale zalihe.</p>
 
               <form>
-                <div class="input-group mb-3">
-                  <select class="form-select" id="subscribeGroup" name="subscribeGroup"></select>
+                <div class="mb-3">
+                  <div class="custom-dropdown modal-dropdown" id="subscribeGroup" role="listbox" aria-label="Odaberi krvnu grupu">
+                    <button class="dd-toggle glass-select" type="button" aria-haspopup="listbox" aria-expanded="false">
+                      <span class="dd-value">Odaberi krvnu grupu</span>
+                      <svg class="dd-chevron" width="12" height="12" viewBox="0 0 12 12"><path fill="currentColor" d="M2 4l4 4 4-4"/></svg>
+                    </button>
+                    <ul class="dd-menu glass" role="listbox"></ul>
+                  </div>
                 </div>
-                <div class="input-group mb-3">
-                  <select class="form-select" id="subscribeLocation" name="subscribeLocation"></select>
+                <div class="mb-3">
+                  <div class="custom-dropdown modal-dropdown" id="subscribeLocation" role="listbox" aria-label="Odaberi lokaciju">
+                    <button class="dd-toggle glass-select" type="button" aria-haspopup="listbox" aria-expanded="false">
+                      <span class="dd-value">Odaberi lokaciju</span>
+                      <svg class="dd-chevron" width="12" height="12" viewBox="0 0 12 12"><path fill="currentColor" d="M2 4l4 4 4-4"/></svg>
+                    </button>
+                    <ul class="dd-menu glass" role="listbox"></ul>
+                  </div>
                 </div>
-                <div class="input-group mb-3">
-                  <select class="form-select" id="subscribeMethod" name="subscribeMethod" disabled>
-                    <option value="push" selected>Push</option>
-                    <option value="email">Email</option>
-                    <option value="sms">SMS</option>
-                  </select>
+                <div class="mb-3">
+                  <div class="custom-dropdown modal-dropdown disabled" id="subscribeMethod" role="listbox" aria-label="Metoda obavijesti" data-disabled="true">
+                    <button class="dd-toggle glass-select" type="button" aria-haspopup="listbox" aria-expanded="false" disabled>
+                      <span class="dd-value">Push</span>
+                      <svg class="dd-chevron" width="12" height="12" viewBox="0 0 12 12"><path fill="currentColor" d="M2 4l4 4 4-4"/></svg>
+                    </button>
+                    <ul class="dd-menu glass" role="listbox">
+                      <li class="dd-option selected" data-value="push" role="option" aria-selected="true">Push</li>
+                      <li class="dd-option" data-value="email" role="option">Email</li>
+                      <li class="dd-option" data-value="sms" role="option">SMS</li>
+                    </ul>
+                  </div>
                 </div>
               </form>
             </div>

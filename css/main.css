@@ -111,9 +111,17 @@ body {
     flex-shrink: 0;
 }
 
-.glass-select {
+/* ===== Custom Dropdown ===== */
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    width: max-content;
+}
+
+.dd-toggle.glass-select {
     appearance: none;
     -webkit-appearance: none;
+    width: 100%;
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -127,16 +135,105 @@ body {
     cursor: pointer;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B6B6B' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 0.75rem center;
-    background-size: 12px;
-    max-width: 200px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.glass-select:focus {
+.dd-toggle.glass-select:focus,
+.custom-dropdown.open .dd-toggle.glass-select {
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.15);
+}
+
+.dd-value {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dd-chevron {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+    color: var(--color-text-muted);
+}
+
+.custom-dropdown.open .dd-chevron {
+    transform: rotate(180deg);
+}
+
+.custom-dropdown .dd-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    width: max-content;
+    min-width: 100%;
+    max-height: 240px;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0.375rem 0;
+    list-style: none;
+    border-radius: var(--radius);
+    z-index: 60;
+    background: rgba(255, 255, 255, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+}
+
+.custom-dropdown.open .dd-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dd-option {
+    padding: 0.5rem 0.875rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--color-text);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s;
+    user-select: none;
+}
+
+.dd-option:hover {
+    background: rgba(229, 57, 53, 0.08);
+}
+
+.dd-option.selected {
+    font-weight: 600;
+    color: var(--color-primary);
+    background: rgba(229, 57, 53, 0.06);
+}
+
+/* Modal dropdown: full width */
+.modal-dropdown {
+    display: block;
+}
+
+.modal-dropdown .dd-toggle.glass-select {
+    width: 100%;
+    max-width: none;
+}
+
+.modal-dropdown .dd-menu {
+    left: 0;
+    right: 0;
+}
+
+/* Disabled state */
+.custom-dropdown.disabled .dd-toggle.glass-select {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 /* ===== Main Content ===== */
@@ -447,18 +544,6 @@ main {
 .btn-primary:hover {
     background-color: #C62828;
     border-color: #C62828;
-}
-
-/* Subscribe modal form selects */
-.modal .form-select {
-    border-radius: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    background-color: rgba(255, 255, 255, 0.6);
-}
-
-.modal .form-select:focus {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.15);
 }
 
 /* ===== Scrollbar (subtle) ===== */

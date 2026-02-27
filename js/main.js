@@ -5,6 +5,101 @@ import { LOCAL_STORAGE_KEY_SELECTED_LOCATION, DEFAULT_LOCATION, FIREBASE_CONFIG 
 
 let updated, locations, selectedLocation;
 
+// ===== Custom Dropdown Helper =====
+
+/**
+ * Initialize a custom dropdown component.
+ * @param {string} id - The element id of the .custom-dropdown container.
+ * @param {Array<{value: string, label: string}>} options - The options to populate.
+ * @param {string} [selectedValue] - Initially selected value.
+ * @param {Function} [onChange] - Callback when selection changes, receives value.
+ */
+const initDropdown = (id, options, selectedValue, onChange) => {
+    const container = document.querySelector(`#${id}`);
+    const toggle = container.querySelector('.dd-toggle');
+    const valueSpan = container.querySelector('.dd-value');
+    const menu = container.querySelector('.dd-menu');
+
+    // Populate options via DOM (XSS-safe)
+    menu.innerHTML = '';
+    options.forEach(opt => {
+        const li = document.createElement('li');
+        li.className = 'dd-option' + (opt.value === selectedValue ? ' selected' : '');
+        li.dataset.value = opt.value;
+        li.setAttribute('role', 'option');
+        li.setAttribute('aria-selected', opt.value === selectedValue ? 'true' : 'false');
+        li.textContent = opt.label;
+        menu.appendChild(li);
+    });
+
+    // Set display value
+    const selectedOpt = options.find(o => o.value === selectedValue);
+    if (selectedOpt) {
+        valueSpan.textContent = selectedOpt.label;
+    }
+
+    // Store value on container
+    container.dataset.selectedValue = selectedValue || '';
+
+    // Toggle open/close
+    toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (container.dataset.disabled === 'true') return;
+        const isOpen = container.classList.contains('open');
+        closeAllDropdowns();
+        if (!isOpen) {
+            container.classList.add('open');
+            toggle.setAttribute('aria-expanded', 'true');
+        }
+    });
+
+    // Option click
+    menu.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const option = e.target.closest('.dd-option');
+        if (!option) return;
+        const value = option.dataset.value;
+        const label = option.textContent;
+
+        // Update selection
+        menu.querySelectorAll('.dd-option').forEach(li => {
+            li.classList.remove('selected');
+            li.setAttribute('aria-selected', 'false');
+        });
+        option.classList.add('selected');
+        option.setAttribute('aria-selected', 'true');
+        valueSpan.textContent = label;
+        container.dataset.selectedValue = value;
+
+        // Close
+        container.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+
+        if (onChange) onChange(value);
+    });
+};
+
+/** Get the currently selected value of a custom dropdown */
+const getDropdownValue = (id) => {
+    return document.querySelector(`#${id}`)?.dataset.selectedValue || '';
+};
+
+/** Close all open custom dropdowns */
+const closeAllDropdowns = () => {
+    document.querySelectorAll('.custom-dropdown.open').forEach(dd => {
+        dd.classList.remove('open');
+        dd.querySelector('.dd-toggle')?.setAttribute('aria-expanded', 'false');
+    });
+};
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', () => closeAllDropdowns());
+
+// Close dropdowns on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAllDropdowns();
+});
+
 // Safe helper to create alert messages without XSS vulnerabilities
 const createAlert = (type, message, isDismissible = true) => {
     const alertDiv = document.createElement('div');
@@ -85,8 +180,8 @@ const renderLocationInfo = (location) => {
     }
 }
 
-const updateSelectedLocation = (e) => {
-    selectedLocation = e.target.value;
+const updateSelectedLocation = (value) => {
+    selectedLocation = value;
     localStorage.setItem(LOCAL_STORAGE_KEY_SELECTED_LOCATION, selectedLocation);
 
     if (!locations || !Array.isArray(locations)) {
@@ -103,28 +198,22 @@ const updateSelectedLocation = (e) => {
 }
 
 const subscribeToPushNotifications = async () => {
-    const subscribeGroupElement = document.querySelector("#subscribeGroup");
-    const subscribeLocationElement = document.querySelector("#subscribeLocation");
     const subscribeButtonElement = document.querySelector("#subscribeButton");
     const subscribeLoadingElement = document.querySelector("#subscribeLoading");
 
-    const subscribeGroup = subscribeGroupElement.value;
-    const subscribeLocation = subscribeLocationElement.value;
+    const subscribeGroup = getDropdownValue('subscribeGroup');
+    const subscribeLocation = getDropdownValue('subscribeLocation');
 
     if (!subscribeGroup || !subscribeLocation) {
         alert('Molimo odaberite lokaciju i krvnu grupu za koju se želite prijaviti.');
         return;
     }
 
-    subscribeGroupElement.disabled = true;
-    subscribeLocationElement.disabled = true;
     subscribeButtonElement.disabled = true;
     subscribeLoadingElement.style.display = 'inline-block';
 
     if (!locations || !Array.isArray(locations)) {
         console.error('Locations data not available for subscription');
-        subscribeGroupElement.disabled = false;
-        subscribeLocationElement.disabled = false;
         subscribeButtonElement.disabled = false;
         subscribeLoadingElement.style.display = 'none';
         
@@ -137,8 +226,6 @@ const subscribeToPushNotifications = async () => {
     
     if (!location) {
         console.error('Selected location not found:', subscribeLocation);
-        subscribeGroupElement.disabled = false;
-        subscribeLocationElement.disabled = false;
         subscribeButtonElement.disabled = false;
         subscribeLoadingElement.style.display = 'none';
         
@@ -151,8 +238,6 @@ const subscribeToPushNotifications = async () => {
     
     bootstrap.Modal.getInstance(document.querySelector('#subscribeModal')).hide();
 
-    subscribeGroupElement.disabled = false;
-    subscribeLocationElement.disabled = false;
     subscribeButtonElement.disabled = false;
     subscribeLoadingElement.style.display = 'none';
     
@@ -194,18 +279,16 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     locations = data.locations;
 
     document.querySelector('#update-time').textContent = `Ažurirano: ${humanReadableDate(updated || Date.parse(new Date().toLocaleDateString()) )}`;
-    updateSelectedLocation({ target: { value: selectedLocation } }); // Preselect location
+    updateSelectedLocation(selectedLocation); // Preselect location
 
-    const locationSelectElement = document.querySelector("#location-select");
-    locationSelectElement.innerHTML = locations.map(location => `
-        <option value="${location.id}" ${location.id === selectedLocation ? 'selected' : ''}>${location.name}</option>
-    `).join('');
-    locationSelectElement.addEventListener("change", updateSelectedLocation);
+    // Initialize header location dropdown
+    const locationOptions = locations.map(loc => ({ value: loc.id, label: loc.name }));
+    initDropdown('location-select', locationOptions, selectedLocation, updateSelectedLocation);
 
-    document.querySelector('#subscribeGroup').innerHTML = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', '0+', '0-'].map((group) => `<option value="${group}">${group}</option>`).join('');
-    document.querySelector('#subscribeLocation').innerHTML = locations.map(location => `
-        <option value="${location.id}" ${location.id === selectedLocation ? 'selected' : ''}>${location.name}</option>
-    `).join('');
+    // Initialize subscribe modal dropdowns
+    const bloodGroupOptions = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', '0+', '0-'].map(g => ({ value: g, label: g }));
+    initDropdown('subscribeGroup', bloodGroupOptions, 'A+');
+    initDropdown('subscribeLocation', locationOptions, selectedLocation);
 
     document.querySelector('#subscribeButton').addEventListener("click", subscribeToPushNotifications);
 });
