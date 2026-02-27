@@ -16,10 +16,18 @@ let updated, locations, selectedLocation;
  */
 const initDropdown = (id, options, selectedValue, onChange) => {
     const container = document.querySelector(`#${id}`);
+    if (!container) {
+        console.warn(`Dropdown container with id "${id}" not found.`);
+        return;
+    }
     const toggle = container.querySelector('.dd-toggle');
     const valueSpan = container.querySelector('.dd-value');
     const menu = container.querySelector('.dd-menu');
 
+    if (!toggle || !valueSpan || !menu) {
+        console.warn(`Dropdown markup for id "${id}" is missing required child elements.`);
+        return;
+    }
     // Populate options via DOM (XSS-safe)
     menu.innerHTML = '';
     options.forEach(opt => {
