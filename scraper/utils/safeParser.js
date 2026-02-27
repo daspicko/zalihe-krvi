@@ -62,22 +62,17 @@ const parseJSObjectLiteral = (jsObjectString) => {
  * @returns {Object} Blood group configuration object
  */
 const extractBloodGroupConfig = (jsCode) => {
-    try {
-        // Clean the code string to extract just the object literal
-        let objectLiteral = jsCode.trim();
-        
-        // Remove 'return' statement if present (with or without space before the brace)
-        objectLiteral = objectLiteral.replace(/^\s*return\s*/, '');
-        
-        // Remove any trailing semicolons
-        objectLiteral = objectLiteral.replace(/;\s*$/, '');
-        
-        // Parse safely
-        return parseJSObjectLiteral(objectLiteral);
-    } catch (error) {
-        console.error('Error extracting blood group config:', error);
-        throw error;
-    }
+    // Clean the code string to extract just the object literal
+    let objectLiteral = jsCode.trim();
+    
+    // Remove 'return' statement if present (with or without space before the brace)
+    objectLiteral = objectLiteral.replace(/^\s*return\s*/, '');
+    
+    // Remove any trailing semicolons
+    objectLiteral = objectLiteral.replace(/;\s*$/, '');
+    
+    // Parse safely
+    return parseJSObjectLiteral(objectLiteral);
 };
 
 export {
