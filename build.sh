@@ -21,16 +21,15 @@ if [[ ! -f data.json ]]; then
     exit 1
 fi
 
-cp index.html dist/
 cp 404.html dist/
-cp data.json dist/
 cp firebase-messaging-sw.js dist/
 cp manifest.json dist/
 
-cp -r css/ dist/
+mkdir -p dist/css
+cp css/bootstrap-*.min.css dist/css/
 cp -r assets/ dist/
 
-npm run rollup # Build with rollup and apply hashes to filenames
+npm run rollup # Build with rollup — hashes JS/CSS and updates index.html
 
 cp -r js/libs dist/js/libs/ # Run after rollup to avoid overwriting
 
