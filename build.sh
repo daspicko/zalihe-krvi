@@ -22,12 +22,11 @@ if [[ ! -f data.json ]]; then
 fi
 
 cp 404.html dist/
-cp data.json dist/
 cp firebase-messaging-sw.js dist/
 cp manifest.json dist/
 
 mkdir -p dist/css
-cp css/bootstrap.min.css dist/css/
+cp css/bootstrap-*.min.css dist/css/
 cp -r assets/ dist/
 
 npm run rollup # Build with rollup — hashes JS/CSS and updates index.html
