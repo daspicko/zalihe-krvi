@@ -167,7 +167,7 @@ const renderLocationInfo = (location) => {
     const isLocationReady = location.address.street || location.address.city || location.address.postalCode;
     
     document.querySelector('.location-header h2').innerText = location.name || ' ';
-    document.querySelector('.location-header p').innerText = isLocationReady ? `${location.address.street}, ${location.address.postalCode} ${location.address.city}` : ' ';
+    document.querySelector('.location-header .location-address').innerText = isLocationReady ? `${location.address.street}, ${location.address.postalCode} ${location.address.city}` : ' ';
     document.querySelector('.location-header a').href = location.dataUrl || '#';
 
     const cards = document.querySelectorAll('.blood-grid > .blood-card');
