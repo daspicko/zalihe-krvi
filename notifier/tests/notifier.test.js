@@ -118,4 +118,50 @@ describe('notifier logic', () => {
             });
         });
     });
+
+    describe('data href extraction from page HTML', () => {
+        const extractDataHref = (html) => {
+            const match = html.match(/<link[^>]+rel="preload"[^>]+href="([^"]*data-[^"]+\.json)"/);
+            return match ? match[1] : null;
+        };
+
+        it('should extract data href from valid preload link tag', () => {
+            const html = '<html><head><link rel="preload" fetchpriority="high" href="/data-B1l8GNY-.json" as="fetch" type="application/json"/></head></html>';
+            const result = extractDataHref(html);
+            assert.strictEqual(result, '/data-B1l8GNY-.json');
+        });
+
+        it('should extract data href when attributes are in different order', () => {
+            const html = '<link fetchpriority="high" rel="preload" href="/data-Xk9mQ2-.json" as="fetch" type="application/json"/>';
+            const result = extractDataHref(html);
+            assert.strictEqual(result, '/data-Xk9mQ2-.json');
+        });
+
+        it('should extract data href among multiple link tags', () => {
+            const html = `
+                <link rel="stylesheet" href="/style.css"/>
+                <link rel="preload" fetchpriority="high" href="/data-Ab3cD4E-.json" as="fetch" type="application/json"/>
+                <link rel="preload" href="/other.js" as="script"/>
+            `;
+            const result = extractDataHref(html);
+            assert.strictEqual(result, '/data-Ab3cD4E-.json');
+        });
+
+        it('should return null when no matching preload link exists', () => {
+            const html = '<html><head><link rel="stylesheet" href="/style.css"/></head></html>';
+            const result = extractDataHref(html);
+            assert.strictEqual(result, null);
+        });
+
+        it('should return null for empty HTML', () => {
+            const result = extractDataHref('');
+            assert.strictEqual(result, null);
+        });
+
+        it('should not match a preload link without data- in href', () => {
+            const html = '<link rel="preload" href="/other-B1l8GNY-.json" as="fetch" type="application/json"/>';
+            const result = extractDataHref(html);
+            assert.strictEqual(result, null);
+        });
+    });
 });
