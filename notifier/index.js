@@ -17,7 +17,16 @@ const sendNotification = async (locationId, bloodType) => {
     });
 }
 
-const response = await fetch(`${process.env.FE_HOST}/data.json`);
+const pageHtml = await fetch(`${process.env.FE_HOST}`).then(response => response.text());
+
+const dataHrefMatch = pageHtml.match(/<link[^>]+rel="preload"[^>]+href="([^"]*data-[^"]+\.json)"/)
+if (!dataHrefMatch) {
+    console.error('Failed to find preloaded data JSON href in page HTML');
+    process.exit(1);
+}
+const dataHref = dataHrefMatch[1];
+
+const response = await fetch(`${process.env.FE_HOST}${dataHref}`);
 
 if (response.ok) {
     const data = await response.json();
